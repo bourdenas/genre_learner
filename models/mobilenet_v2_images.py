@@ -74,6 +74,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "--train_dataset", help="Filepath with the dataset of images and classes to load for training.", default='dataset/')
     parser.add_argument(
+        "--output_path", help="Filepath with the dataset of images and classes to load for training.", default='trained/')
+    parser.add_argument(
         "--image_size", help="Image vertical size used as input for training. (default: 720)", type=int, default=720)
     parser.add_argument("--image_aspect_ratio",
                         help="Image aspect ratio. (default: 1.777)", type=float, default=1.7777777777)
@@ -117,3 +119,5 @@ if __name__ == "__main__":
                              epochs=total_epochs,
                              initial_epoch=history.epoch[-1],
                              validation_data=validation_dataset)
+
+    model.save(args.output_path)
