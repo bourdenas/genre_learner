@@ -1,4 +1,4 @@
-import os                                   # nopep8
+import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'    # nopep8
 
 import time
@@ -9,6 +9,7 @@ import tensorflow.keras.layers as tfl
 
 from collections import defaultdict
 from tensorflow.keras.preprocessing import image, image_dataset_from_directory
+from utils import collect_images                                   # nopep8
 
 
 def get_top_n(data, N):
@@ -31,27 +32,6 @@ def get_top_n(data, N):
     return sorted_data[:N]
 
 
-def collect_images(directory, extensions=('.jpg', '.jpeg', '.png')):
-    '''
-    Iterates through a directory structure and collects paths of images.
-
-    Args:
-        directory (str): The root directory to search within.
-        extensions (tuple, optional): A tuple of image file extensions to collect.
-                                      Defaults to ('.jpg', '.jpeg', '.png').
-
-    Returns:
-        list: A list of image file paths found within the directory structure.
-    '''
-
-    image_paths = defaultdict(list)
-    for root, _, files in os.walk(directory):
-        for file in files:
-            if file.lower().endswith(extensions):
-                image_paths[root].append(file)
-    return image_paths
-
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Annotate games with genres based on an input model using screenshot annotations.')
@@ -59,6 +39,12 @@ if __name__ == '__main__':
         '--dataset', help='Filepath with the dataset of images and classes to load for predictions.')
     parser.add_argument(
         '--model', help='Filepath to a model for annotating screenshots.')
+    parser.add_argument(
+        '--image_size', help='Image vertical size used as input for training. (default: 720)',
+        type=int, default=720)
+    parser.add_argument(
+        '--image_aspect_ratio', help='Image aspect ratio. (default: 1.777)',
+        type=float, default=1.7777777777)
     args = parser.parse_args()
 
     # TODO: That's a hack to load the dataset class names. Find a better way to retreive class labels.
@@ -72,6 +58,9 @@ if __name__ == '__main__':
                                                                        seed=42)
     class_names = train_dataset.class_names
 
+    image_size = (
+        round(args.image_size * args.image_aspect_ratio), args.image_size)
+
     model = tf.keras.models.load_model(args.model)
 
     games = collect_images(args.dataset)
@@ -79,12 +68,12 @@ if __name__ == '__main__':
         processed_images = []
         for img in images:
             img = image.load_img(os.path.join(game, img),
-                                 target_size=(1280, 720))
+                                 target_size=image_size)
             img_array = image.img_to_array(img)
-            img_array = tf.expand_dims(
-                img_array, axis=0)  # Add a batch dimension
-            processed_images.append(tf.keras.applications.mobilenet_v2.preprocess_input(
-                img_array))
+            img_array = tf.expand_dims(img_array, axis=0)
+            # processed_images.append(tf.keras.applications.mobilenet_v2.preprocess_input(
+            #     img_array))
+            processed_images.append(img_array)
 
         img_processed = tf.concat(processed_images, axis=0)
         print(img_processed.shape)
@@ -97,11 +86,6 @@ if __name__ == '__main__':
         for pred in prediction:
             (index, p) = pred[0]
             classification[class_names[index]] += 1
-        print(f'{game} -> {classification}')
-        runner_up = defaultdict(int)
-        for pred in prediction:
-            (index, p) = pred[1]
-            runner_up[class_names[index]] += 1
-        print(f'\t\trunner up: {runner_up}')
-
-        time.sleep(1)
+        genres = sorted(classification.items(),
+                        key=lambda x: x[1], reverse=True)
+        print(f'{game} -> {genres[0]}')
