@@ -1,14 +1,12 @@
 import csv
 import os
 import re
-import argparse
 
-from collections import defaultdict
 from PIL import Image
 from urllib.request import urlretrieve
 
 
-class LabeledExample:
+class CsvRowDict:
     def __init__(self, **kwargs):
         # Set attributes based on keyword arguments
         self.__dict__.update(kwargs)
@@ -16,15 +14,14 @@ class LabeledExample:
 
 def load_examples(filename):
     """
-    Reads a CSV file and returns contained labeled examples.
+    Reads a CSV file and returns entries for label predictions.
 
     Args:
         filename (str): The path to the CSV file.
 
     Returns:
-        list: A list LabeledExample instances representing each row in the CSV file.
+        list: A list CsvRowDict instances representing each row in the CSV file.
     """
-
     examples = []
     with open(filename, 'r') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -34,7 +31,7 @@ def load_examples(filename):
 
         for row in reader:
             # Create class instance with row data as attributes
-            instance = LabeledExample(**row)
+            instance = CsvRowDict(**row)
             examples.append(instance)
 
     return examples
@@ -98,43 +95,3 @@ def download_and_resize_image(image_url, output_dir, image_size):
         print(f"Image downloaded and resized: {filename}")
     except Exception as e:
         print(f"Error downloading/resizing image: {e}")
-
-
-def create_dir_structure(base_dir, dir_structure, image_size):
-    """
-    Creates a directory structure and download images for each directory.
-
-    Args:
-        base_dir (str): The base directory path.
-        dir_structure (dict): A dictionary mapping directory to image urls.
-    """
-    for dir_name, images in dir_structure.items():
-        full_path = os.path.join(base_dir, dir_name)
-        os.makedirs(full_path, exist_ok=True)
-
-        for image in images:
-            download_and_resize_image(image, full_path, image_size)
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description="Generates a dataset for training from a csv file with labeled examples.")
-    parser.add_argument("--examples", help="CSV file with labeled examples.")
-    parser.add_argument(
-        "--dataset_path", help="Directory path to generate the dataset from the examples.")
-    parser.add_argument(
-        "--image_size", help="Image vertical size. (default: 1080)", type=int, default=1080)
-    parser.add_argument("--image_aspect_ratio",
-                        help="Image aspect ratio. (default: 1.777)", type=float, default=1.7777777777)
-
-    args = parser.parse_args()
-
-    examples = load_examples(args.examples)
-
-    dir_structure = defaultdict(list)
-    for example in examples[:10]:
-        dir_structure[normalize_to_dir_name(example.genres)].extend(
-            example.images.split("|"))
-
-    create_dir_structure(args.dataset_path, dir_structure,
-                         (round(args.image_size * args.image_aspect_ratio), args.image_size))
