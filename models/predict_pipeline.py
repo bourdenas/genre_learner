@@ -40,11 +40,9 @@ if __name__ == '__main__':
     parser.add_argument(
         '--model', help='Filepath to a model for annotating screenshots.')
     parser.add_argument(
-        '--image_size', help='Image vertical size used as input for training. (default: 720)',
-        type=int, default=720)
+        '--image_size', help='Image vertical size used as input for training. (default: 720)', type=int, default=720)
     parser.add_argument(
-        '--image_aspect_ratio', help='Image aspect ratio. (default: 1.777)',
-        type=float, default=1.7777777777)
+        '--image_aspect_ratio', help='Image aspect ratio. (default: 1.777)', type=float, default=1.7777777777)
     args = parser.parse_args()
 
     # TODO: That's a hack to load the dataset class names. Find a better way to retreive class labels.
@@ -71,9 +69,9 @@ if __name__ == '__main__':
                                  target_size=image_size)
             img_array = image.img_to_array(img)
             img_array = tf.expand_dims(img_array, axis=0)
-            # processed_images.append(tf.keras.applications.mobilenet_v2.preprocess_input(
-            #     img_array))
-            processed_images.append(img_array)
+            processed_images.append(
+                tf.keras.applications.mobilenet_v2.preprocess_input(img_array))
+            # processed_images.append(img_array)
 
         img_processed = tf.concat(processed_images, axis=0)
         print(img_processed.shape)

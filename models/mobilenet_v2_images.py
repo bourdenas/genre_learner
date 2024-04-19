@@ -25,11 +25,11 @@ def create_model(image_size, classes, learning_rate):
                                                    include_top=False,
                                                    weights='imagenet')
 
-    base_model.trainable = False
+    base_model.trainable = True
     inputs = tf.keras.Input(shape=input_shape)
 
     x = tf.keras.applications.mobilenet_v2.preprocess_input(inputs)
-    x = base_model(x, training=False)
+    x = base_model(x, training=True)
 
     # Add the final classification layer.
     x = tfl.GlobalAveragePooling2D()(x)
@@ -74,15 +74,17 @@ if __name__ == '__main__':
     parser.add_argument(
         '--dataset', help='Filepath with the dataset of images and classes to load for training.')
     parser.add_argument(
+        '--retrain_model', help='Filepath to an already trained model to resume training. If omitted trains a model from scratch.')
+    parser.add_argument(
         '--output', help='Filepath with the dataset of images and classes to load for training.')
     parser.add_argument(
         '--image_size', help='Image vertical size used as input for training. (default: 720)', type=int, default=720)
     parser.add_argument(
-        '--image_aspect_ratio',
-        help='Image aspect ratio. (default: 1.777)', type=float, default=1.7777777777)
+        '--image_aspect_ratio', help='Image aspect ratio. (default: 1.777)', type=float, default=1.7777777777)
     parser.add_argument(
-        '--batch_size',
-        help='Image training batch size. (default: 32)', type=float, default=32)
+        '--batch_size', help='Image training batch size. (default: 32)', type=float, default=32)
+    parser.add_argument(
+        '--epochs', help='Number of epochs to train. (default: 10)', type=int, default=10)
 
     args = parser.parse_args()
 
@@ -102,24 +104,15 @@ if __name__ == '__main__':
     train_dataset = train_dataset.prefetch(
         buffer_size=tf.data.experimental.AUTOTUNE)
 
-    base_learning_rate = 0.001
-    model = create_model(image_size, classes=len(
-        class_names), learning_rate=base_learning_rate)
-    model.summary()
+    if args.retrain_model == None:
+        base_learning_rate = 0.0001
+        model = create_model(image_size, classes=len(
+            class_names), learning_rate=base_learning_rate)
+        model.summary()
 
-    initial_epochs = 10
+    else:
+        model = tf.keras.models.load_model(args.retrain_model)
+
     history = model.fit(
-        train_dataset, validation_data=validation_dataset, epochs=initial_epochs)
-
-    # Optimize last layers of the original model.
-    optimize_base_model(model, layer_to_start_tunning=120,
-                        learning_rate=base_learning_rate * 0.1)
-
-    fine_tune_epochs = 5
-    total_epochs = initial_epochs + fine_tune_epochs
-    history_fine = model.fit(train_dataset,
-                             epochs=total_epochs,
-                             initial_epoch=history.epoch[-1],
-                             validation_data=validation_dataset)
-
+        train_dataset, validation_data=validation_dataset, epochs=args.epochs)
     model.save(args.output, save_format='keras')
