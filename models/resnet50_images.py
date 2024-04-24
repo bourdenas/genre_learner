@@ -185,7 +185,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--image_aspect_ratio', help='Image aspect ratio. (default: 1.777)', type=float, default=1.7777777777)
     parser.add_argument(
-        '--batch_size', help='Image training batch size. (default: 32)', type=float, default=32)
+        '--batch_size', help='Image training batch size. (default: 32)', type=int, default=32)
     parser.add_argument(
         '--epochs', help='Number of epochs to train. (default: 10)', type=int, default=10)
 
