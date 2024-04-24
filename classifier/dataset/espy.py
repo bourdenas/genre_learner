@@ -1,6 +1,6 @@
 import numpy as np
 import tensorflow as tf
-import utils
+import dataset.utils as utils
 
 
 class EspyDataset:

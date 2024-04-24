@@ -9,7 +9,27 @@ import tensorflow.keras.layers as tfl
 
 from collections import defaultdict
 from tensorflow.keras.preprocessing import image, image_dataset_from_directory
-from utils import collect_images                                   # nopep8
+
+
+def collect_images(directory, extensions=('.jpg', '.jpeg', '.png')):
+    '''
+    Iterates through a directory structure and collects paths of images.
+
+    Args:
+        directory (str): The root directory to search within.
+        extensions (tuple, optional): A tuple of image file extensions to collect.
+                                      Defaults to ('.jpg', '.jpeg', '.png').
+
+    Returns:
+        list: A list of image file paths found within the directory structure.
+    '''
+
+    image_paths = defaultdict(list)
+    for root, _, files in os.walk(directory):
+        for file in files:
+            if file.lower().endswith(extensions):
+                image_paths[root].append(file)
+    return image_paths
 
 
 def get_top_n(data, N):
@@ -64,7 +84,7 @@ if __name__ == '__main__':
     games = collect_images(args.dataset)
     for (game, images) in games.items():
         processed_images = []
-        for img in images:
+        for img in images[:4]:
             img = image.load_img(os.path.join(game, img),
                                  target_size=image_size)
             img_array = image.img_to_array(img)

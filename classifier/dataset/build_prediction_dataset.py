@@ -1,7 +1,7 @@
 import os
 import argparse
+import utils
 
-from utils import *
 from collections import defaultdict
 
 
@@ -19,7 +19,7 @@ def create_dir_structure(base_dir, dir_structure, image_size):
         os.makedirs(full_path, exist_ok=True)
 
         for image in images:
-            download_and_resize_image(image, full_path, image_size)
+            utils.download_and_resize_image(image, full_path, image_size)
 
 
 if __name__ == "__main__":
@@ -35,11 +35,11 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    examples = load_examples(args.examples)
+    examples = utils.load_examples(args.examples)
 
     dir_structure = defaultdict(list)
     for example in examples:
-        dir_structure[normalize_to_dir_name(example.name)].extend(
+        dir_structure[utils.normalize_to_dir_name(example.name)].extend(
             example.images.split("|"))
 
     create_dir_structure(args.dataset_path, dir_structure,

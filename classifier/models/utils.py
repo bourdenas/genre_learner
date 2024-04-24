@@ -1,6 +1,5 @@
-
-from collections import defaultdict
 import os
+from collections import defaultdict
 
 
 def collect_images(directory, extensions=('.jpg', '.jpeg', '.png')):

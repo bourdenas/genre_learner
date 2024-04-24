@@ -8,7 +8,6 @@ import tensorflow.keras.layers as tfl
 
 from tensorflow.keras.preprocessing import image, image_dataset_from_directory
 from tensorflow.keras.initializers import random_uniform, glorot_uniform, constant, identity
-from utils import collect_images
 
 
 def identity_block(X, f, filters, initializer=random_uniform):

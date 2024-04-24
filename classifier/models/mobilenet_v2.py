@@ -76,7 +76,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--retrain_model', help='Filepath to an already trained model to resume training. If omitted trains a model from scratch.')
     parser.add_argument(
-        '--output', help='Filepath with the dataset of images and classes to load for training.')
+        '--output', help='Filepath to save the trained model.')
     parser.add_argument(
         '--image_size', help='Image vertical size used as input for training. (default: 720)', type=int, default=720)
     parser.add_argument(
