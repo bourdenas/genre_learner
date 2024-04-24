@@ -13,7 +13,7 @@ from dataset.espy import EspyDataset
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Generates a self for training from a csv file with labeled examples.")
+        description="Predict genre classes for an espy dataset.")
     parser.add_argument("--examples", help="CSV file with labeled examples.")
     parser.add_argument(
         '--model', help='Filepath to an already trained model to resume training. If omitted trains a model from scratch.')
@@ -22,7 +22,7 @@ if __name__ == "__main__":
     parser.add_argument(
         '--epochs', help='Number of epochs to train. (default: 10)', type=int, default=40)
     parser.add_argument(
-        '--predictions', help='Filepath to save a csv with the model predictions,')
+        '--predictions', help='Filepath to save a csv with the model predictions.')
 
     args = parser.parse_args()
 
