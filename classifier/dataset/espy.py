@@ -44,7 +44,8 @@ class EspyDataset:
         Returns:
             str: Human readable description of the prediction output.
         '''
-        return ', '.join([f'{self.index_to_genre[i]}: {p:.2}' for i, p in enumerate(Y) if p >= 0.1])
+        # return ', '.join([f'{self.index_to_genre[i]}: {p:.2}' for i, p in enumerate(Y) if p >= 0.1])
+        return ','.join([self.index_to_genre[i] for i, p in enumerate(Y) if p >= 0.1])
 
     def feature_names(self):
         '''
@@ -73,17 +74,20 @@ class EspyDataset:
         '''
         examples = utils.load_examples(filename)
 
-        igdb_genres, steam_tags, espy_genres = set(), set(), set()
-        for example in examples:
-            igdb_genres.update(example.igdb_genres.split('|'))
-            steam_tags.update(example.steam_tags.split('|'))
-            espy_genres.update(example.genres.split('|'))
+        with open('classifier/igdb_genres.txt') as f:
+            igdb_genres = set([line.strip() for line in f])
+        with open('classifier/steam_tags.txt') as f:
+            steam_tags = set([line.strip() for line in f])
+        with open('classifier/espy_genres.txt') as f:
+            espy_genres = set([line.strip() for line in f])
 
         i = 0
         for genre in sorted(igdb_genres):
             self.feature_index[f'igdb_{genre}'] = i
             i += 1
         for tag in sorted(steam_tags):
+            if tag == '':
+                continue
             self.feature_index[f'steam_{tag}'] = i
             i += 1
         self.index_to_feature = {v: k for k, v in self.feature_index.items()}
@@ -92,20 +96,21 @@ class EspyDataset:
                             genre in enumerate(sorted(espy_genres))}
         self.index_to_genre = {v: k for k, v in self.genre_index.items()}
 
-        self.__build_xy(examples)
         self.examples = examples
-
-    def __build_xy(self, examples):
         for example in examples:
             # X input array dimensions are IGDB genres + Steam tags where the
             # value for each feature is the genres/tags position in the listing
             # to encode its importance.
-            igdb_genres = example.igdb_genres.split('|')
-            steam_tags = example.steam_tags.split('|')
-            indices = [self.feature_index[f'igdb_{genre}'] for genre in igdb_genres] + \
-                [self.feature_index[f'steam_{tag}'] for tag in steam_tags]
-            values = [i + 1 for (i, _) in enumerate(igdb_genres)] + \
-                [i + 1 for (i, _) in enumerate(steam_tags)]
+            genres = example.igdb_genres.split('|')
+            if example.steam_tags != '':
+                tags = example.steam_tags.split('|')
+            else:
+                tags = []
+            indices = [self.feature_index[f'igdb_{genre}'] for genre in genres if genre in igdb_genres] + \
+                [self.feature_index[f'steam_{tag}']
+                    for tag in tags if tag in steam_tags]
+            values = [i + 1 for (i, genre) in enumerate(genres) if genre in igdb_genres] + \
+                [i + 1 for (i, tag) in enumerate(tags) if tag in steam_tags]
 
             X = np.zeros(len(self.feature_index), dtype=int)
             X[indices] = values
@@ -114,9 +119,9 @@ class EspyDataset:
 
             # Y labels array represents the espy genres, where the value of each
             # cell is either 0 or 1. Each example may be assigned a few genres.
-            espy_genres = example.genres.split('|')
-            indices = [self.genre_index[genre] for genre in espy_genres]
-            values = [1 for _ in espy_genres]
+            genres = example.genres.split('|')
+            indices = [self.genre_index[genre] for genre in genres]
+            values = [1 for _ in genres]
 
             Y = np.zeros(len(self.genre_index))
             Y[indices] = values

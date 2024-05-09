@@ -39,17 +39,18 @@ if __name__ == "__main__":
         model.save(args.output)
     else:
         model = tf.keras.models.load_model(args.model)
+        model.summary()
 
     predictions = model.predict(dataset.X, verbose=0)
-
     with open(args.predictions, "w") as csvfile:
         writer = csv.DictWriter(
-            csvfile, fieldnames=['name', 'prediction', 'genres', 'features'])
+            csvfile, fieldnames=['id', 'name', 'prediction', 'genres', 'features'])
         writer.writeheader()
         for i, example in enumerate(dataset.examples):
             writer.writerow({
+                'id': example.id,
                 'name': example.name,
                 'prediction': dataset.decodeY(predictions[i]),
-                'genres': dataset.decodeY(dataset.Y[i]),
+                # 'genres': dataset.decodeY(dataset.Y[i]),
                 'features': dataset.decodeX(dataset.X[i]),
             })
