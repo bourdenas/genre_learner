@@ -45,7 +45,7 @@ class EspyDataset:
             str: Human readable description of the prediction output.
         '''
         # return ', '.join([f'{self.index_to_genre[i]}: {p:.2}' for i, p in enumerate(Y) if p >= 0.1])
-        return ','.join([self.index_to_genre[i] for i, p in enumerate(Y) if p >= 0.1])
+        return ','.join([self.index_to_genre[i] for i, p in enumerate(Y) if p >= 0.5])
 
     def feature_names(self):
         '''
