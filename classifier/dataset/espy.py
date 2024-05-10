@@ -119,14 +119,16 @@ class EspyDataset:
 
             # Y labels array represents the espy genres, where the value of each
             # cell is either 0 or 1. Each example may be assigned a few genres.
-            genres = example.genres.split('|')
-            indices = [self.genre_index[genre] for genre in genres]
-            values = [1 for _ in genres]
+            if len(example.genres) > 0:
+                genres = example.genres.split('|')
+                indices = [self.genre_index[genre] for genre in genres]
+                values = [1 for _ in genres]
 
-            Y = np.zeros(len(self.genre_index))
-            Y[indices] = values
-            Y = tf.expand_dims(Y, axis=0)
-            self.Y.append(Y)
+                Y = np.zeros(len(self.genre_index))
+                Y[indices] = values
+                Y = tf.expand_dims(Y, axis=0)
+                self.Y.append(Y)
 
         self.X = tf.concat(self.X, axis=0)
-        self.Y = tf.concat(self.Y, axis=0)
+        if len(self.Y) > 0:
+            self.Y = tf.concat(self.Y, axis=0)
