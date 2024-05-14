@@ -6,9 +6,8 @@ import argparse
 import models.dense as dense
 import numpy as np
 import tensorflow as tf
-import tensorflow.keras.layers as tfl
 
-from dataset.espy import EspyDataset
+from dataset.espy import EspyDataset, Features, Labels
 
 
 if __name__ == "__main__":
@@ -26,12 +25,12 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    dataset = EspyDataset()
-    dataset.load(args.examples)
+    features = Features.load()
+    labels = Labels.load()
+    dataset = EspyDataset.from_csv(args.examples)
 
     if args.model == None:
-        model = dense.build(
-            features=len(dataset.feature_names()), classes=len(dataset.class_names()))
+        model = dense.build(features=features.N(), classes=labels.N())
         model.summary()
 
         history = model.fit(x=dataset.X, y=dataset.Y,
@@ -42,15 +41,19 @@ if __name__ == "__main__":
         model.summary()
 
     predictions = model.predict(dataset.X, verbose=0)
+    rows = []
+    for i, example in enumerate(dataset.examples):
+        rows.append({
+            'id': example.id,
+            'name': example.name,
+            'prediction': ','.join(labels.labels(predictions[i])),
+        })
+        print(f'{example.name} -- {labels.labels(predictions[i])}')
+
+    print('writing to file')
     with open(args.predictions, "w") as csvfile:
         writer = csv.DictWriter(
             csvfile, fieldnames=['id', 'name', 'prediction', 'genres', 'features'])
         writer.writeheader()
-        for i, example in enumerate(dataset.examples):
-            writer.writerow({
-                'id': example.id,
-                'name': example.name,
-                'prediction': dataset.decodeY(predictions[i]),
-                # 'genres': dataset.decodeY(dataset.Y[i]),
-                'features': dataset.decodeX(dataset.X[i]),
-            })
+        for row in rows:
+            writer.writerow(row)
