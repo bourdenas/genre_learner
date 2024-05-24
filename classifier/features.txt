@@ -1,0 +1,431 @@
+IGDB_Adventure
+IGDB_Arcade
+IGDB_CardAndBoard
+IGDB_Fighting
+IGDB_HackAndSlash
+IGDB_Indie
+IGDB_MOBA
+IGDB_Music
+IGDB_Pinball
+IGDB_Platformer
+IGDB_PointAndClick
+IGDB_Puzzle
+IGDB_Quiz
+IGDB_Racing
+IGDB_RealTimeStrategy
+IGDB_RPG
+IGDB_Shooter
+IGDB_Simulator
+IGDB_Sports
+IGDB_Strategy
+IGDB_Tactical
+IGDB_TurnBasedStrategy
+IGDB_VisualNovel
+STEAM_1980s
+STEAM_2.5D
+STEAM_2D
+STEAM_2D Fighter
+STEAM_2D Platformer
+STEAM_3D
+STEAM_3D Fighter
+STEAM_3D Platformer
+STEAM_3D Vision
+STEAM_4 Player Local
+STEAM_4X
+STEAM_6DOF
+STEAM_Abstract
+STEAM_Action
+STEAM_Action Roguelike
+STEAM_Action RPG
+STEAM_Action RTS
+STEAM_Action-Adventure
+STEAM_Addictive
+STEAM_Adventure
+STEAM_Agriculture
+STEAM_Aliens
+STEAM_Alternate History
+STEAM_Ambient
+STEAM_America
+STEAM_Anime
+STEAM_Arcade
+STEAM_Archery
+STEAM_Arena Shooter
+STEAM_Artificial Intelligence
+STEAM_Assassin
+STEAM_Asynchronous Multiplayer
+STEAM_Atmospheric
+STEAM_ATV
+STEAM_Auto Battler
+STEAM_Automation
+STEAM_Automobile Sim
+STEAM_Base Building
+STEAM_Baseball
+STEAM_Based On A Novel
+STEAM_Basketball
+STEAM_Battle Royale
+STEAM_Beat 'em up
+STEAM_Beautiful
+STEAM_Benchmark
+STEAM_Bikes
+STEAM_Blood
+STEAM_Board Game
+STEAM_Boomer Shooter
+STEAM_Boss Rush
+STEAM_Boxing
+STEAM_Building
+STEAM_Bullet Hell
+STEAM_Bullet Time
+STEAM_Capitalism
+STEAM_Card Battler
+STEAM_Card Game
+STEAM_Cartoon
+STEAM_Cartoony
+STEAM_Casual
+STEAM_Cats
+STEAM_Character Action Game
+STEAM_Character Customization
+STEAM_Chess
+STEAM_Choices Matter
+STEAM_Choose Your Own Adventure
+STEAM_Cinematic
+STEAM_City Builder
+STEAM_Class-Based
+STEAM_Classic
+STEAM_Clicker
+STEAM_Co-op
+STEAM_Co-op Campaign
+STEAM_Cold War
+STEAM_Collectathon
+STEAM_Colony Sim
+STEAM_Colorful
+STEAM_Combat
+STEAM_Combat Racing
+STEAM_Comedy
+STEAM_Comic Book
+STEAM_Competitive
+STEAM_Conspiracy
+STEAM_Controller
+STEAM_Conversation
+STEAM_Cooking
+STEAM_Cozy
+STEAM_Crafting
+STEAM_Creature Collector
+STEAM_Crime
+STEAM_Crowdfunded
+STEAM_CRPG
+STEAM_Cult Classic
+STEAM_Cute
+STEAM_Cyberpunk
+STEAM_Cycling
+STEAM_Dark
+STEAM_Dark Comedy
+STEAM_Dark Fantasy
+STEAM_Dark Humor
+STEAM_Dating Sim
+STEAM_Deckbuilding
+STEAM_Demons
+STEAM_Design & Illustration
+STEAM_Destruction
+STEAM_Detective
+STEAM_Difficult
+STEAM_Dinosaurs
+STEAM_Diplomacy
+STEAM_Documentary
+STEAM_Dog
+STEAM_Dragons
+STEAM_Drama
+STEAM_Driving
+STEAM_Dungeon Crawler
+STEAM_Dungeons & Dragons
+STEAM_Dwarf
+STEAM_Dynamic Narration
+STEAM_Dystopian
+STEAM_Early Access
+STEAM_Economy
+STEAM_Education
+STEAM_Electronic
+STEAM_Electronic Music
+STEAM_Elf
+STEAM_Emotional
+STEAM_Epic
+STEAM_Episodic
+STEAM_Escape Room
+STEAM_eSports
+STEAM_Experience
+STEAM_Experimental
+STEAM_Exploration
+STEAM_Extraction Shooter
+STEAM_Family Friendly
+STEAM_Fantasy
+STEAM_Farming
+STEAM_Farming Sim
+STEAM_Fast-Paced
+STEAM_Female Protagonist
+STEAM_Fighting
+STEAM_First-Person
+STEAM_Fishing
+STEAM_Flight
+STEAM_FMV
+STEAM_Football (American)
+STEAM_Football (Soccer)
+STEAM_Fox
+STEAM_FPS
+STEAM_Free to Play
+STEAM_Funny
+STEAM_Futuristic
+STEAM_Gambling
+STEAM_Game Development
+STEAM_GameMaker
+STEAM_Games Workshop
+STEAM_Gaming
+STEAM_God Game
+STEAM_Golf
+STEAM_Gore
+STEAM_Gothic
+STEAM_Grand Strategy
+STEAM_Great Soundtrack
+STEAM_Grid-Based Movement
+STEAM_Gun Customization
+STEAM_Hack and Slash
+STEAM_Hacking
+STEAM_Hand-drawn
+STEAM_Hardware
+STEAM_Heist
+STEAM_Hentai
+STEAM_Hero Shooter
+STEAM_Hex Grid
+STEAM_Hidden Object
+STEAM_Historical
+STEAM_Hockey
+STEAM_Horror
+STEAM_Horses
+STEAM_Hunting
+STEAM_Idler
+STEAM_Illuminati
+STEAM_Immersive
+STEAM_Immersive Sim
+STEAM_Indie
+STEAM_Instrumental Music
+STEAM_Interactive Fiction
+STEAM_Inventory Management
+STEAM_Investigation
+STEAM_Isometric
+STEAM_Jet
+STEAM_Job Simulator
+STEAM_JRPG
+STEAM_Kickstarter
+STEAM_LEGO
+STEAM_Lemmings
+STEAM_Level Editor
+STEAM_LGBTQ+
+STEAM_Life Sim
+STEAM_Linear
+STEAM_Local Co-Op
+STEAM_Local Multiplayer
+STEAM_Logic
+STEAM_Loot
+STEAM_Looter Shooter
+STEAM_Lore-Rich
+STEAM_Lovecraftian
+STEAM_Magic
+STEAM_Management
+STEAM_Mars
+STEAM_Martial Arts
+STEAM_Massively Multiplayer
+STEAM_Match 3
+STEAM_Mature
+STEAM_Mechs
+STEAM_Medical Sim
+STEAM_Medieval
+STEAM_Memes
+STEAM_Metroidvania
+STEAM_Military
+STEAM_Minigames
+STEAM_Minimalist
+STEAM_Mining
+STEAM_MMORPG
+STEAM_MOBA
+STEAM_Mod
+STEAM_Moddable
+STEAM_Modern
+STEAM_Motocross
+STEAM_Motorbike
+STEAM_Mouse only
+STEAM_Movie
+STEAM_Multiplayer
+STEAM_Multiple Endings
+STEAM_Music
+STEAM_Music-Based Procedural Generation
+STEAM_Musou
+STEAM_Mystery
+STEAM_Mystery Dungeon
+STEAM_Mythology
+STEAM_Narration
+STEAM_Narrative
+STEAM_Nature
+STEAM_Naval
+STEAM_Naval Combat
+STEAM_Ninja
+STEAM_Noir
+STEAM_Nonlinear
+STEAM_Nostalgia
+STEAM_NSFW
+STEAM_Nudity
+STEAM_Offroad
+STEAM_Old School
+STEAM_On-Rails Shooter
+STEAM_Online Co-Op
+STEAM_Open World
+STEAM_Open World Survival Craft
+STEAM_Outbreak Sim
+STEAM_Parkour
+STEAM_Parody
+STEAM_Party
+STEAM_Party Game
+STEAM_Party-Based RPG
+STEAM_Perma Death
+STEAM_Philosophical
+STEAM_Photo Editing
+STEAM_Physics
+STEAM_Pinball
+STEAM_Pirates
+STEAM_Pixel Graphics
+STEAM_Platformer
+STEAM_Point & Click
+STEAM_Political
+STEAM_Political Sim
+STEAM_Politics
+STEAM_Post-apocalyptic
+STEAM_Precision Platformer
+STEAM_Procedural Generation
+STEAM_Programming
+STEAM_Psychedelic
+STEAM_Psychological
+STEAM_Psychological Horror
+STEAM_Puzzle
+STEAM_Puzzle Platformer
+STEAM_PvE
+STEAM_PvP
+STEAM_Quick-Time Events
+STEAM_Racing
+STEAM_Real Time Tactics
+STEAM_Real-Time
+STEAM_Real-Time with Pause
+STEAM_Realistic
+STEAM_Reboot
+STEAM_Relaxing
+STEAM_Remake
+STEAM_Replay Value
+STEAM_Resource Management
+STEAM_Retro
+STEAM_Rhythm
+STEAM_Robots
+STEAM_Rock Music
+STEAM_Roguelike
+STEAM_Roguelike Deckbuilder
+STEAM_Roguelite
+STEAM_Roguevania
+STEAM_Romance
+STEAM_Rome
+STEAM_RPG
+STEAM_RPGMaker
+STEAM_RTS
+STEAM_Runner
+STEAM_Sailing
+STEAM_Sandbox
+STEAM_Satire
+STEAM_Sci-fi
+STEAM_Science
+STEAM_Score Attack
+STEAM_Sequel
+STEAM_Sexual Content
+STEAM_Shoot 'Em Up
+STEAM_Shooter
+STEAM_Short
+STEAM_Side Scroller
+STEAM_Silent Protagonist
+STEAM_Simulation
+STEAM_Singleplayer
+STEAM_Skateboarding
+STEAM_Sniper
+STEAM_Snow
+STEAM_Social Deduction
+STEAM_Sokoban
+STEAM_Solitaire
+STEAM_Souls-like
+STEAM_Soundtrack
+STEAM_Space
+STEAM_Space Sim
+STEAM_Spaceships
+STEAM_Spectacle fighter
+STEAM_Split Screen
+STEAM_Sports
+STEAM_Stealth
+STEAM_Steampunk
+STEAM_Story Rich
+STEAM_Strategy
+STEAM_Strategy RPG
+STEAM_Stylized
+STEAM_Submarine
+STEAM_Superhero
+STEAM_Supernatural
+STEAM_Surreal
+STEAM_Survival
+STEAM_Survival Horror
+STEAM_Swordplay
+STEAM_Tabletop
+STEAM_Tactical
+STEAM_Tactical RPG
+STEAM_Tanks
+STEAM_Team-Based
+STEAM_Text-Based
+STEAM_Third Person
+STEAM_Third-Person Shooter
+STEAM_Thriller
+STEAM_Time Attack
+STEAM_Time Management
+STEAM_Time Manipulation
+STEAM_Time Travel
+STEAM_Top-Down
+STEAM_Top-Down Shooter
+STEAM_Touch-Friendly
+STEAM_Tower Defense
+STEAM_TrackIR
+STEAM_Trading
+STEAM_Trading Card Game
+STEAM_Traditional Roguelike
+STEAM_Trains
+STEAM_Transhumanism
+STEAM_Transportation
+STEAM_Trivia
+STEAM_Turn-Based
+STEAM_Turn-Based Combat
+STEAM_Turn-Based Strategy
+STEAM_Turn-Based Tactics
+STEAM_Tutorial
+STEAM_Twin Stick Shooter
+STEAM_Typing
+STEAM_Underground
+STEAM_Underwater
+STEAM_Unforgiving
+STEAM_Vampire
+STEAM_Vehicular Combat
+STEAM_Vikings
+STEAM_Villain Protagonist
+STEAM_Violent
+STEAM_Visual Novel
+STEAM_Volleyball
+STEAM_Voxel
+STEAM_VR
+STEAM_Walking Simulator
+STEAM_War
+STEAM_Wargame
+STEAM_Warhammer 40K
+STEAM_Well-Written
+STEAM_Werewolves
+STEAM_Western
+STEAM_Wholesome
+STEAM_World War I
+STEAM_World War II
+STEAM_Wrestling
+STEAM_Zombies

@@ -7,37 +7,26 @@ from typing import List, Dict, Set
 
 class Features:
     def load():
-        with open('classifier/igdb_genres.txt') as f:
-            igdb_genres = set([line.strip() for line in f])
-        with open('classifier/steam_tags.txt') as f:
-            steam_tags = set([line.strip() for line in f])
+        with open('classifier/features.txt') as f:
+            features = set([line.strip() for line in f])
 
-        i = 0
-        feature_index = {}
-        for genre in sorted(igdb_genres):
-            feature_index[f'IGDB_{genre}'] = i
-            i += 1
-        for tag in sorted(steam_tags):
-            if tag:
-                feature_index[f'STEAM_{tag}'] = i
-            i += 1
+        feature_index = {genre: i for i, genre in enumerate(sorted(features))}
         reverse_index = {v: k for k, v in feature_index.items()}
-        return Features(igdb_genres, steam_tags, feature_index, reverse_index)
+
+        return Features(features, feature_index, reverse_index)
 
     def __init__(self,
-                 igdb_genres: Set[str],
-                 steam_tags: Set[str],
+                 features: Set[str],
                  feature_index: Dict[str, int],
                  reverse_index: Dict[int, str]):
-        self.igdb_genres = igdb_genres
-        self.steam_tags = steam_tags
+        self.features = features
 
         # Mapping of feature names to index in the input vector and reverse.
         self.feature_index = feature_index
         self.reverse_index = reverse_index
 
     def N(self) -> int:
-        return len(self.feature_index)
+        return len(self.features)
 
     def build_array(self, igdb_genres: List[str], steam_tags: List[str]):
         '''
@@ -53,14 +42,12 @@ class Features:
         Returns:
             Tensor(1, N): List of features in the array with a non-zero value.
         '''
-        indices = [self.feature_index[f'IGDB_{genre}']
-                   for genre in igdb_genres if genre in self.igdb_genres] + \
-            [self.feature_index[f'STEAM_{tag}']
-                for tag in steam_tags if tag in self.steam_tags]
-        values = [i + 1 for (i, genre) in enumerate(igdb_genres)
-                  if genre in self.igdb_genres] + \
+        indices = [self.feature_index[genre] for genre in igdb_genres if genre in self.features] + \
+            [self.feature_index[tag]
+                for tag in steam_tags if tag in self.features]
+        values = [i + 1 for (i, genre) in enumerate(igdb_genres) if genre in self.features] + \
             [i + 1 for (i, tag) in enumerate(steam_tags)
-             if tag in self.steam_tags]
+             if tag in self.features]
 
         X = np.zeros(self.N(), dtype=int)
         X[indices] = values
@@ -85,8 +72,7 @@ class Labels:
         with open('classifier/espy_genres.txt') as f:
             espy_genres = set([line.strip() for line in f])
 
-        label_index = {genre: i for i,
-                       genre in enumerate(sorted(espy_genres))}
+        label_index = {genre: i for i, genre in enumerate(sorted(espy_genres))}
         reverse_index = {v: k for k, v in label_index.items()}
         return Labels(espy_genres, label_index, reverse_index)
 
@@ -160,7 +146,8 @@ class EspyDataset:
             steam_tags = example.steam_tags.split(
                 '|') if example.steam_tags else []
 
-            X.append(features.build_array(igdb_genres, steam_tags))
+            X.append(features.build_array(
+                ['IGDB_' + v for v in igdb_genres], ['STEAM_' + v for v in steam_tags]))
 
             # Y labels array represents the espy genres, where the value of each
             # cell is either 0 or 1. Each example may be assigned a few genres.

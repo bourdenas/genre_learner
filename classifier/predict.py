@@ -48,7 +48,7 @@ if __name__ == "__main__":
             'name': example.name,
             'prediction': ','.join(labels.labels(predictions[i])),
         })
-        print(f'{example.name} -- {labels.labels(predictions[i])}')
+        # print(f'{example.name} -- {labels.labels(predictions[i])}')
 
     print('writing to file')
     with open(args.predictions, "w") as csvfile:

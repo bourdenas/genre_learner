@@ -3,7 +3,7 @@ import tensorflow as tf
 import tensorflow.keras.layers as tfl
 
 
-def build(features, classes):
+def build(features: int, classes: int):
     '''
     Builds a dense model.
 
