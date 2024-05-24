@@ -123,8 +123,10 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# Images and models
 *.jpg
 *.jpeg
 *.png
 *.csv
 *.keras
+prod_model/
