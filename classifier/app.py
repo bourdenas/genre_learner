@@ -1,3 +1,9 @@
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'    # nopep8
+
+import tensorflow as tf
+
+from argparse import ArgumentParser
 from flask import Flask, request, jsonify
 from dataclasses import dataclass, field
 from dataclasses_json import dataclass_json
@@ -26,6 +32,7 @@ class GenresResponse:
 
 features = Features.load()
 labels = Labels.load()
+global model
 
 
 @app.route('/genres', methods=['POST'])
@@ -34,16 +41,30 @@ def handle_genres():
         json = request.get_json()
         req = GenresRequest(**json)
 
-        result = predict(req)
-        return jsonify(result)
+        X = features.build_array(
+            igdb_genres=[f'IGDB_{e}' for e in req.igdb_genres],
+            steam_tags=[f'STEAM_{e}' for e in req.steam_tags]
+        )
+        Y = model(X)
+        genres = labels.labels(Y[0])
+
+        resp = GenresResponse(req.id, req.name, espy_genres=genres)
+        return jsonify(resp)
     except Exception as e:
         error_message = {'error': str(e)}
         return jsonify(error_message), 500
 
 
-def predict(req: GenresRequest):
-    return GenresResponse(req.id, req.name, espy_genres=['CRPG'])
-
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    parser = ArgumentParser(
+        description="Flask app for serving the genres model predictions.")
+    parser.add_argument(
+        '--model', help='Filepath to the model used for serving.')
+    parser.add_argument(
+        '--port', help='Port number to listen for requests. (default: 5000)', type=int, default=5000)
+    args = parser.parse_args()
+
+    model = tf.keras.models.load_model(args.model)
+    model.summary()
+
+    app.run(debug=True, port=args.port)
