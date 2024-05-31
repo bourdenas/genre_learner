@@ -3,42 +3,29 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'    # nopep8
 
 import csv
 import argparse
-import models.dense as dense
-import numpy as np
 import tensorflow as tf
 
 from dataset.espy import EspyDataset, Features, Labels
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description="Predict genre classes for an espy dataset.")
-    parser.add_argument("--examples", help="CSV file with labeled examples.")
+        description='Predict genre classes for an espy dataset.')
     parser.add_argument(
-        '--model', help='Filepath to an already trained model to resume training. If omitted trains a model from scratch.')
+        '--model', help='Filepath to the model to use for prediction.')
     parser.add_argument(
-        '--output', help='Filepath to save the trained model.')
+        '--input', help='Filepath to CSV file with unlabeled dataset.')
     parser.add_argument(
-        '--epochs', help='Number of epochs to train. (default: 10)', type=int, default=40)
-    parser.add_argument(
-        '--predictions', help='Filepath to save a csv with the model predictions.')
+        '--output', help='Filepath to save a CSV with the model predictions.')
 
     args = parser.parse_args()
 
     features = Features.load()
     labels = Labels.load()
-    dataset = EspyDataset.from_csv(args.examples)
+    dataset = EspyDataset.from_csv(args.input)
 
-    if args.model == None:
-        model = dense.build(features=features.N(), classes=labels.N())
-        model.summary()
-
-        history = model.fit(x=dataset.X, y=dataset.Y,
-                            validation_split=0.2, epochs=args.epochs)
-        model.save(args.output)
-    else:
-        model = tf.keras.models.load_model(args.model)
-        model.summary()
+    model = tf.keras.models.load_model(args.model)
+    model.summary()
 
     predictions = model.predict(dataset.X, verbose=0)
     rows = []
@@ -51,7 +38,7 @@ if __name__ == "__main__":
         # print(f'{example.name} -- {labels.labels(predictions[i])}')
 
     print('writing to file')
-    with open(args.predictions, "w") as csvfile:
+    with open(args.output, 'w') as csvfile:
         writer = csv.DictWriter(
             csvfile, fieldnames=['id', 'name', 'prediction', 'genres', 'features'])
         writer.writeheader()
