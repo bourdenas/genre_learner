@@ -19,6 +19,8 @@ class GenresRequest:
     id: int
     name: str
     igdb_genres: List[str] = field(default_factory=list)
+    igdb_keywords: List[str] = field(default_factory=list)
+    steam_genres: List[str] = field(default_factory=list)
     steam_tags: List[str] = field(default_factory=list)
 
 
@@ -43,10 +45,12 @@ def handle_genres():
 
         X = features.build_array(
             igdb_genres=[f'IGDB_{e}' for e in req.igdb_genres],
-            steam_tags=[f'STEAM_{e}' for e in req.steam_tags]
+            igdb_keywords=[f'KW_IGDB_{e}' for e in req.igdb_keywords],
+            steam_genres=[f'STEAM_{e}' for e in req.steam_genres],
+            steam_tags=[f'KW_STEAM_{e}' for e in req.steam_tags],
         )
         Y = model(X)
-        genres = labels.labels(Y[0])
+        genres = labels.labels(Y[0], threshold=.3333)
 
         resp = GenresResponse(req.id, req.name, espy_genres=genres)
         return jsonify(resp)
