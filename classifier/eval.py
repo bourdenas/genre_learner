@@ -14,6 +14,8 @@ if __name__ == "__main__":
         '--examples', help='Path to csv file with a model predictions.')
     parser.add_argument(
         '--model', help='Filepath to the model to use for eval.')
+    parser.add_argument(
+        '--sigmoid_threshold', help='Threshold of the sigmoid function (0,1) for accepting a label prediction. (default: 0.5)', type=float, default=.5)
     args = parser.parse_args()
 
     features = Features.load()
@@ -27,7 +29,10 @@ if __name__ == "__main__":
 
     wins, total_predictions, total_ground_truths = 0, 0, 0
     for i, example in enumerate(dataset.examples):
-        result = set(labels.labels(predictions[i], threshold=.5))
+        result = set(labels.labels(
+            predictions[i],
+            threshold=args.sigmoid_threshold
+        ))
         ground_truth = set(example.espy_genres.split('|'))
 
         for label in result:
