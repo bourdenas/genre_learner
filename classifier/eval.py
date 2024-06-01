@@ -1,28 +1,40 @@
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'    # nopep8
+
 import argparse
 import dataset.utils as utils
+import tensorflow as tf
+
+from dataset.espy import EspyDataset, Features, Labels
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Evaluate predictions for genre classifications.")
     parser.add_argument(
-        '--predictions', help='Path to csv file with a model predictions.')
+        '--examples', help='Path to csv file with a model predictions.')
+    parser.add_argument(
+        '--model', help='Filepath to the model to use for eval.')
     args = parser.parse_args()
 
-    examples = utils.load_examples(args.predictions)
+    features = Features.load()
+    labels = Labels.load()
+    dataset = EspyDataset.from_csv(args.examples)
 
-    wins, partials, losses = 0, 0, 0
-    for example in examples:
-        predictions = set([p.split(':')[0]
-                          for p in example.prediction.split(',')])
-        genres = set([g.split(':')[0] for g in example.genres.split(',')])
+    model = tf.keras.models.load_model(args.model)
+    model.summary()
 
-        diff = genres.difference(predictions)
-        if len(diff) == 0:
-            wins += 1
-        elif predictions.issubset(genres):
-            partials += 1
-        else:
-            losses += 1
+    predictions = model.predict(dataset.X, verbose=0)
 
-    print(f'wins={wins}, partials={partials}, losses={losses}')
-    print(f'accuracy={(wins / len(examples)):.2}, partial_accuracy={((wins + partials) / len(examples)):.2}, loss={(losses / len(examples)):.2}')
+    wins, total_predictions, total_ground_truths = 0, 0, 0
+    for i, example in enumerate(dataset.examples):
+        result = set(labels.labels(predictions[i], threshold=.5))
+        ground_truth = set(example.espy_genres.split('|'))
+
+        for label in result:
+            if label in ground_truth:
+                wins += 1
+        total_predictions += len(result)
+        total_ground_truths += len(ground_truth)
+
+    print(f'precision={(wins / total_predictions):.2}')
+    print(f'recall={(wins / total_ground_truths):.2}')
