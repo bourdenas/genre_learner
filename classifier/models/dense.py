@@ -14,6 +14,9 @@ def build(features: int, classes: int):
     inputs = tf.keras.Input(shape=(features,))
     X = tfl.Dense(2048, activation='relu')(inputs)
     X = tfl.Dropout(0.2)(X)
+    X = tfl.Dense(1024, activation='relu')(X)
+    X = tfl.Dropout(0.2)(X)
+    X = tfl.Dense(512, activation='relu')(X)
     outputs = tfl.Dense(classes, activation='sigmoid')(X)
 
     model = tf.keras.Model(inputs, outputs)
