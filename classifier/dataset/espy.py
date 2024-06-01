@@ -1,3 +1,4 @@
+import itertools
 import numpy as np
 import tensorflow as tf
 import dataset.utils as utils
@@ -28,7 +29,13 @@ class Features:
     def N(self) -> int:
         return len(self.features)
 
-    def build_array(self, igdb_genres: List[str], steam_tags: List[str]):
+    def build_array(
+            self,
+            igdb_genres: List[str],
+            steam_genres: List[str],
+            igdb_keywords: List[str],
+            steam_tags: List[str]
+    ):
         '''
         Returns an feature input vector of shape (1,N) encoding the input
         `igdb_genres` and `steam_tags`.
@@ -42,12 +49,15 @@ class Features:
         Returns:
             Tensor(1, N): List of features in the array with a non-zero value.
         '''
-        indices = [self.feature_index[genre] for genre in igdb_genres if genre in self.features] + \
-            [self.feature_index[tag]
-                for tag in steam_tags if tag in self.features]
-        values = [i + 1 for (i, genre) in enumerate(igdb_genres) if genre in self.features] + \
-            [i + 1 for (i, tag) in enumerate(steam_tags)
-             if tag in self.features]
+        indices = []
+        for feature in itertools.chain(igdb_genres, steam_genres, igdb_keywords, steam_tags):
+            if feature in self.features:
+                indices.append(self.feature_index[feature])
+
+        values = []
+        for (i, feature) in itertools.chain(enumerate(igdb_genres), enumerate(steam_genres), enumerate(igdb_keywords), enumerate(steam_tags)):
+            if feature in self.features:
+                values.append(i + 1)
 
         X = np.zeros(self.N(), dtype=int)
         X[indices] = values
@@ -142,17 +152,28 @@ class EspyDataset:
             # X input array dimensions are IGDB genres + Steam tags where the
             # value for each feature is the genres/tags position in the listing
             # to encode its importance.
-            igdb_genres = example.igdb_genres.split('|')
+            igdb_genres = example.igdb_genres.split(
+                '|') if example.igdb_genres else []
+            steam_genres = example.steam_genres.split(
+                '|') if example.steam_genres else []
+            igdb_keywords = example.igdb_keywords.split(
+                '|') if example.igdb_keywords else []
             steam_tags = example.steam_tags.split(
                 '|') if example.steam_tags else []
 
-            X.append(features.build_array(
-                ['IGDB_' + v for v in igdb_genres], ['STEAM_' + v for v in steam_tags]))
+            X.append(
+                features.build_array(
+                    igdb_genres=['IGDB_' + v for v in igdb_genres],
+                    igdb_keywords=['KW_IGDB_' + v for v in igdb_keywords],
+                    steam_genres=['STEAM_' + v for v in steam_genres],
+                    steam_tags=['KW_STEAM_' + v for v in steam_tags]
+                )
+            )
 
             # Y labels array represents the espy genres, where the value of each
             # cell is either 0 or 1. Each example may be assigned a few genres.
-            if example.genres:
-                espy_genres = example.genres.split('|')
+            if example.espy_genres:
+                espy_genres = example.espy_genres.split('|')
                 Y.append(labels.build_array(espy_genres))
 
         return EspyDataset(examples, tf.concat(X, axis=0), tf.concat(Y, axis=0) if Y else [])
