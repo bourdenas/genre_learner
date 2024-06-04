@@ -3,7 +3,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'    # nopep8
 
 import tensorflow as tf
 
-from argparse import ArgumentParser
+from argparse import ArgumentParser, BooleanOptionalAction
 from flask import Flask, request, jsonify
 from dataclasses import dataclass, field
 from dataclasses_json import dataclass_json
@@ -66,9 +66,12 @@ if __name__ == '__main__':
         '--model', help='Filepath to the model used for serving.')
     parser.add_argument(
         '--port', help='Port number to listen for requests. (default: 5000)', type=int, default=5000)
+    parser.add_argument(
+        '--debug', help='Run the flask app in debug mode. (default: True)', default=True, action=BooleanOptionalAction)
     args = parser.parse_args()
 
     model = tf.keras.models.load_model(args.model)
-    model.summary()
+    if (args.debug):
+        model.summary()
 
-    app.run(debug=True, port=args.port)
+    app.run(debug=args.debug, port=args.port)
