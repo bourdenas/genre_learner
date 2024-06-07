@@ -2,9 +2,9 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'    # nopep8
 
 import argparse
-import models.dense as dense
+import classifier.models.dense as dense
 
-from dataset.espy import EspyDataset, Features, Labels
+from classifier.dataset.espy import EspyDataset, Features, Labels
 
 
 if __name__ == '__main__':

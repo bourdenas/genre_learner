@@ -1,14 +1,14 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'    # nopep8
 
+from classifier.dataset.espy import Features, Labels
+from typing import List
+from dataclasses_json import dataclass_json
+from dataclasses import dataclass, field
+from flask import Flask, request, jsonify
+from argparse import ArgumentParser, BooleanOptionalAction
 import tensorflow as tf
 
-from argparse import ArgumentParser, BooleanOptionalAction
-from flask import Flask, request, jsonify
-from dataclasses import dataclass, field
-from dataclasses_json import dataclass_json
-from typing import List
-from dataset.espy import Features, Labels
 
 app = Flask(__name__)
 
@@ -34,7 +34,13 @@ class GenresResponse:
 
 features = Features.load()
 labels = Labels.load()
-global model
+model = None
+
+
+def genres(filename):
+    global model
+    model = tf.keras.models.load_model(filename)
+    return app
 
 
 @app.route('/genres', methods=['POST'])
@@ -65,7 +71,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--model', help='Filepath to the model used for serving.')
     parser.add_argument(
-        '--port', help='Port number to listen for requests. (default: 5000)', type=int, default=5000)
+        '--port', help='Port number to listen for requests. (default: 8080)', type=int, default=8080)
     parser.add_argument(
         '--debug', help='Run the flask app in debug mode. (default: True)', default=True, action=BooleanOptionalAction)
     args = parser.parse_args()

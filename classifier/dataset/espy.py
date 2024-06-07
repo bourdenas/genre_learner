@@ -1,7 +1,7 @@
 import itertools
 import numpy as np
 import tensorflow as tf
-import dataset.utils as utils
+import classifier.dataset.utils as utils
 
 from typing import List, Dict, Set
 

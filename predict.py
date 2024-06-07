@@ -5,7 +5,7 @@ import csv
 import argparse
 import tensorflow as tf
 
-from dataset.espy import EspyDataset, Features, Labels
+from classifier.dataset.espy import EspyDataset, Features, Labels
 
 
 if __name__ == '__main__':

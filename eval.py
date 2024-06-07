@@ -2,10 +2,9 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'    # nopep8
 
 import argparse
-import dataset.utils as utils
 import tensorflow as tf
 
-from dataset.espy import EspyDataset, Features, Labels
+from classifier.dataset.espy import EspyDataset, Features, Labels
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
