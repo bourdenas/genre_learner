@@ -2,7 +2,7 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'    # nopep8
 
 from classifier.dataset.espy import Features, Labels
-from typing import List
+from typing import Dict, List
 from dataclasses_json import dataclass_json
 from dataclasses import dataclass, field
 from flask import Flask, request, jsonify
@@ -26,10 +26,17 @@ class GenresRequest:
 
 @dataclass_json
 @dataclass
+class GenresDebugInfo:
+    labels: Dict[str, str]
+
+
+@dataclass_json
+@dataclass
 class GenresResponse:
     id: int
     name: str
     espy_genres: List[str] = field(default_factory=list)
+    debug_info: GenresDebugInfo = field(default_factory=Dict)
 
 
 features = Features.load()
@@ -59,6 +66,30 @@ def handle_genres():
         genres = labels.labels(Y[0], threshold=.3333)
 
         resp = GenresResponse(req.id, req.name, espy_genres=genres)
+        return jsonify(resp)
+    except Exception as e:
+        error_message = {'error': str(e)}
+        return jsonify(error_message), 500
+
+
+@app.route('/genres_debug', methods=['POST'])
+def handle_genres_debug():
+    try:
+        json = request.get_json()
+        req = GenresRequest(**json)
+
+        X = features.build_array(
+            igdb_genres=[f'IGDB_{e}' for e in req.igdb_genres],
+            igdb_keywords=[f'KW_IGDB_{e}' for e in req.igdb_keywords],
+            steam_genres=[f'STEAM_{e}' for e in req.steam_genres],
+            steam_tags=[f'KW_STEAM_{e}' for e in req.steam_tags],
+        )
+        Y = model(X)
+        genres = labels.labels(Y[0], threshold=.3333)
+        decoded = labels.decode_array(Y[0])
+
+        resp = GenresResponse(
+            req.id, req.name, espy_genres=genres, debug_info=GenresDebugInfo(labels=decoded))
         return jsonify(resp)
     except Exception as e:
         error_message = {'error': str(e)}

@@ -64,7 +64,7 @@ class Features:
         X = tf.expand_dims(X, axis=0)
         return X
 
-    def decode_array(self, X) -> List[str]:
+    def decode_array(self, X) -> Dict[str, str]:
         '''
         Returns human readable description of the input vector `X`.
 
@@ -72,9 +72,9 @@ class Features:
             X (Tensor(N,)): Input tensor X with values for each input feature.
 
         Returns:
-            list(str): List of features in the array with a non-zero value.
+            Dict[str,str]: Input features with a non-zero value.
         '''
-        return [f'{self.reverse_index[i]}: {p}' for i, p in enumerate(X) if p > 0]
+        return {self.reverse_index[i]: f'{p}' for i, p in enumerate(X) if p > 0}
 
 
 class Labels:
@@ -108,7 +108,7 @@ class Labels:
         Y = tf.expand_dims(Y, axis=0)
         return Y
 
-    def decode_array(self, Y) -> List[str]:
+    def decode_array(self, Y) -> Dict[str, str]:
         '''
         Returns human readable description of the predictions output array Y.
 
@@ -116,9 +116,9 @@ class Labels:
             Y (tensor (L,)): Output tensor Y with values for each label predicition.
 
         Returns:
-            list(str): List of labels in the array with a non-zero value.
+            Dict(str, str): Activated labels with their associated value in [0.001, 1].
         '''
-        return [f'{self.reverse_index[i]}: {p:.2}' for i, p in enumerate(Y) if p > 0]
+        return {self.reverse_index[i]: f'{p:.3}' for i, p in enumerate(Y) if p >= 0.001}
 
     def labels(self, Y, threshold=0.5) -> List[str]:
         return [self.reverse_index[i] for i, p in enumerate(Y) if p >= threshold]
