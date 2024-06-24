@@ -22,6 +22,8 @@ class GenresRequest:
     igdb_keywords: List[str] = field(default_factory=list)
     steam_genres: List[str] = field(default_factory=list)
     steam_tags: List[str] = field(default_factory=list)
+    gog_genres: List[str] = field(default_factory=list)
+    gog_tags: List[str] = field(default_factory=list)
 
 
 @dataclass_json
@@ -36,7 +38,7 @@ class GenresResponse:
     id: int
     name: str
     espy_genres: List[str] = field(default_factory=list)
-    debug_info: GenresDebugInfo = field(default_factory=Dict)
+    debug_info: GenresDebugInfo = field(default_factory=dict)
 
 
 features = Features.load()
@@ -61,6 +63,8 @@ def handle_genres():
             igdb_keywords=[f'KW_IGDB_{e}' for e in req.igdb_keywords],
             steam_genres=[f'STEAM_{e}' for e in req.steam_genres],
             steam_tags=[f'KW_STEAM_{e}' for e in req.steam_tags],
+            gog_genres=[f'GOG_{e}' for e in req.gog_genres],
+            gog_tags=[f'KW_GOG_{e}' for e in req.gog_tags],
         )
         Y = model(X)
         genres = labels.labels(Y[0], threshold=.3333)
