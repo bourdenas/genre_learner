@@ -87,6 +87,8 @@ def handle_genres_debug():
             igdb_keywords=[f'KW_IGDB_{e}' for e in req.igdb_keywords],
             steam_genres=[f'STEAM_{e}' for e in req.steam_genres],
             steam_tags=[f'KW_STEAM_{e}' for e in req.steam_tags],
+            gog_genres=[f'GOG_{e}' for e in req.gog_genres],
+            gog_tags=[f'KW_GOG_{e}' for e in req.gog_tags],
         )
         Y = model(X)
         genres = labels.labels(Y[0], threshold=.3333)
