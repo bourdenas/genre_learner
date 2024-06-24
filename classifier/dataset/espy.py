@@ -33,29 +33,28 @@ class Features:
             self,
             igdb_genres: List[str],
             steam_genres: List[str],
+            gog_genres: List[str],
             igdb_keywords: List[str],
-            steam_tags: List[str]
+            steam_tags: List[str],
+            gog_tags: List[str],
     ):
         '''
         Returns an feature input vector of shape (1,N) encoding the input
-        `igdb_genres` and `steam_tags`.
+        features from IGDB, Steam and GOG.
 
         Args:
-            igdb_genres: List of IGDB genres provided as input. The ordering of
-                         the genres is encoded in the output vector.
-            steam_tags: List of STEAM tags provided as input. The ordering of
-                        the tags is encoded in the output vector.
+            Input features.
 
         Returns:
             Tensor(1, N): List of features in the array with a non-zero value.
         '''
         indices = []
-        for feature in itertools.chain(igdb_genres, steam_genres, igdb_keywords, steam_tags):
+        for feature in itertools.chain(igdb_genres, steam_genres, gog_genres, igdb_keywords, steam_tags, gog_tags):
             if feature in self.features:
                 indices.append(self.feature_index[feature])
 
         values = []
-        for (i, feature) in itertools.chain(enumerate(igdb_genres), enumerate(steam_genres), enumerate(igdb_keywords), enumerate(steam_tags)):
+        for (i, feature) in itertools.chain(enumerate(igdb_genres), enumerate(steam_genres), enumerate(gog_genres), enumerate(igdb_keywords), enumerate(steam_tags), enumerate(gog_tags)):
             if feature in self.features:
                 values.append(i + 1)
 
@@ -149,24 +148,30 @@ class EspyDataset:
 
         X, Y = [], []
         for example in examples:
-            # X input array dimensions are IGDB genres + Steam tags where the
+            # X input array dimensions are IGDB + Steam + GOG tags where the
             # value for each feature is the genres/tags position in the listing
             # to encode its importance.
             igdb_genres = example.igdb_genres.split(
                 '|') if example.igdb_genres else []
             steam_genres = example.steam_genres.split(
                 '|') if example.steam_genres else []
+            gog_genres = example.gog_genres.split(
+                '|') if example.gog_genres else []
             igdb_keywords = example.igdb_keywords.split(
                 '|') if example.igdb_keywords else []
             steam_tags = example.steam_tags.split(
                 '|') if example.steam_tags else []
+            gog_tags = example.gog_tags.split(
+                '|') if example.gog_tags else []
 
             X.append(
                 features.build_array(
                     igdb_genres=['IGDB_' + v for v in igdb_genres],
                     igdb_keywords=['KW_IGDB_' + v for v in igdb_keywords],
                     steam_genres=['STEAM_' + v for v in steam_genres],
-                    steam_tags=['KW_STEAM_' + v for v in steam_tags]
+                    steam_tags=['KW_STEAM_' + v for v in steam_tags],
+                    gog_genres=['GOG_' + v for v in gog_genres],
+                    gog_tags=['KW_GOG_' + v for v in gog_tags],
                 )
             )
 
