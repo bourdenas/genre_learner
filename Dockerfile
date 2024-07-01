@@ -27,4 +27,4 @@ RUN pip install -r requirements.txt
 
 ENV PORT 8080
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "app:genres(filename='tags.keras')"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "app:predict_genres(filename='tags.keras')"]

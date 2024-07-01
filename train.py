@@ -4,7 +4,9 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'    # nopep8
 import argparse
 import classifier.models.dense as dense
 
-from classifier.dataset.espy import EspyDataset, Features, Labels
+from classifier.dataset.espy import EspyDataset
+from classifier.dataset.genres import Genres
+from classifier.dataset.tags import Tags
 
 
 if __name__ == '__main__':
@@ -19,11 +21,11 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    features = Features.load()
-    labels = Labels.load()
+    tags = Tags.load()
+    genres = Genres.load()
     dataset = EspyDataset.from_csv(args.examples)
 
-    model = dense.build(features=features.N(), classes=labels.N())
+    model = dense.build(features=tags.N(), classes=genres.N())
     model.summary()
 
     history = model.fit(x=dataset.X, y=dataset.Y,
