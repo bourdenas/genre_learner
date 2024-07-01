@@ -28,6 +28,6 @@ if __name__ == '__main__':
     model = dense.build(features=tags.N(), classes=genres.N())
     model.summary()
 
-    history = model.fit(x=dataset.X, y=dataset.Y,
+    history = model.fit(x=dataset.tags, y=dataset.genres,
                         validation_split=0.2, epochs=args.epochs)
     model.save(args.output)

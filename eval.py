@@ -26,7 +26,7 @@ if __name__ == "__main__":
     model = tf.keras.models.load_model(args.model)
     model.summary()
 
-    predictions = model.predict(dataset.X, verbose=0)
+    predictions = model.predict(dataset.tags, verbose=0)
 
     wins, total_predictions, total_ground_truths = 0, 0, 0
     for i, example in enumerate(dataset.examples):
