@@ -1,7 +1,8 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'    # nopep8
 
-from classifier.dataset.espy import Features, Labels
+from classifier.dataset.genres import Genres
+from classifier.dataset.tags import Tags
 from typing import Dict, List
 from dataclasses_json import dataclass_json
 from dataclasses import dataclass, field
@@ -41,12 +42,12 @@ class GenresResponse:
     debug_info: GenresDebugInfo = field(default_factory=dict)
 
 
-features = Features.load()
-labels = Labels.load()
+tags = Tags.load()
+genres = Genres.load()
 model = None
 
 
-def genres(filename):
+def predict_genres(filename):
     global model
     model = tf.keras.models.load_model(filename)
     return app
@@ -58,7 +59,7 @@ def handle_genres():
         json = request.get_json()
         req = GenresRequest(**json)
 
-        X = features.build_array(
+        X = tags.build_array(
             igdb_genres=[f'IGDB_{e}' for e in req.igdb_genres],
             igdb_keywords=[f'KW_IGDB_{e}' for e in req.igdb_keywords],
             steam_genres=[f'STEAM_{e}' for e in req.steam_genres],
@@ -67,7 +68,7 @@ def handle_genres():
             gog_tags=[f'KW_GOG_{e}' for e in req.gog_tags],
         )
         Y = model(X)
-        genres = labels.labels(Y[0], threshold=.3333)
+        genres = genres.labels(Y[0], threshold=.3333)
 
         resp = GenresResponse(req.id, req.name, espy_genres=genres)
         return jsonify(resp)
@@ -82,7 +83,7 @@ def handle_genres_debug():
         json = request.get_json()
         req = GenresRequest(**json)
 
-        X = features.build_array(
+        X = tags.build_array(
             igdb_genres=[f'IGDB_{e}' for e in req.igdb_genres],
             igdb_keywords=[f'KW_IGDB_{e}' for e in req.igdb_keywords],
             steam_genres=[f'STEAM_{e}' for e in req.steam_genres],
@@ -91,8 +92,8 @@ def handle_genres_debug():
             gog_tags=[f'KW_GOG_{e}' for e in req.gog_tags],
         )
         Y = model(X)
-        genres = labels.labels(Y[0], threshold=.3333)
-        decoded = labels.decode_array(Y[0])
+        genres = genres.labels(Y[0], threshold=.3333)
+        decoded = genres.decode_array(Y[0])
 
         resp = GenresResponse(
             req.id, req.name, espy_genres=genres, debug_info=GenresDebugInfo(labels=decoded))

@@ -1,138 +1,29 @@
-import itertools
+import matplotlib.pyplot as plt
+import classifier.dataset.utils as utils
 import numpy as np
 import tensorflow as tf
-import classifier.dataset.utils as utils
+import tensorflow.data as tf_data
+import tensorflow.keras.layers as tfl
 
-from typing import List, Dict, Set
-
-
-class Features:
-    def load():
-        with open('classifier/features.txt') as f:
-            features = set([line.strip() for line in f])
-
-        feature_index = {genre: i for i, genre in enumerate(sorted(features))}
-        reverse_index = {v: k for k, v in feature_index.items()}
-
-        return Features(features, feature_index, reverse_index)
-
-    def __init__(self,
-                 features: Set[str],
-                 feature_index: Dict[str, int],
-                 reverse_index: Dict[int, str]):
-        self.features = features
-
-        # Mapping of feature names to index in the input vector and reverse.
-        self.feature_index = feature_index
-        self.reverse_index = reverse_index
-
-    def N(self) -> int:
-        return len(self.features)
-
-    def build_array(
-            self,
-            igdb_genres: List[str],
-            steam_genres: List[str],
-            gog_genres: List[str],
-            igdb_keywords: List[str],
-            steam_tags: List[str],
-            gog_tags: List[str],
-    ):
-        '''
-        Returns an feature input vector of shape (1,N) encoding the input
-        features from IGDB, Steam and GOG.
-
-        Args:
-            Input features.
-
-        Returns:
-            Tensor(1, N): List of features in the array with a non-zero value.
-        '''
-        indices = []
-        for feature in itertools.chain(igdb_genres, steam_genres, gog_genres, igdb_keywords, steam_tags, gog_tags):
-            if feature in self.features:
-                indices.append(self.feature_index[feature])
-
-        values = []
-        for (i, feature) in itertools.chain(enumerate(igdb_genres), enumerate(steam_genres), enumerate(gog_genres), enumerate(igdb_keywords), enumerate(steam_tags), enumerate(gog_tags)):
-            if feature in self.features:
-                values.append(i + 1)
-
-        X = np.zeros(self.N(), dtype=int)
-        X[indices] = values
-        X = tf.expand_dims(X, axis=0)
-        return X
-
-    def decode_array(self, X) -> Dict[str, str]:
-        '''
-        Returns human readable description of the input vector `X`.
-
-        Args:
-            X (Tensor(N,)): Input tensor X with values for each input feature.
-
-        Returns:
-            Dict[str,str]: Input features with a non-zero value.
-        '''
-        return {self.reverse_index[i]: f'{p}' for i, p in enumerate(X) if p > 0}
-
-
-class Labels:
-    def load():
-        with open('classifier/espy_genres.txt') as f:
-            espy_genres = set([line.strip() for line in f])
-
-        label_index = {genre: i for i, genre in enumerate(sorted(espy_genres))}
-        reverse_index = {v: k for k, v in label_index.items()}
-        return Labels(espy_genres, label_index, reverse_index)
-
-    def __init__(self,
-                 espy_genres: Set[str],
-                 label_index: Dict[str, int],
-                 reverse_index: Dict[int, str]):
-        self.espy_genres = espy_genres
-
-        # Mapping of label names to index in the output vector and reverse.
-        self.label_index = label_index
-        self.reverse_index = reverse_index
-
-    def N(self) -> int:
-        return len(self.label_index)
-
-    def build_array(self, espy_genres: List[str]):
-        indices = [self.label_index[genre] for genre in espy_genres]
-        values = [1 for _ in espy_genres]
-
-        Y = np.zeros(self.N())
-        Y[indices] = values
-        Y = tf.expand_dims(Y, axis=0)
-        return Y
-
-    def decode_array(self, Y) -> Dict[str, str]:
-        '''
-        Returns human readable description of the predictions output array Y.
-
-        Args:
-            Y (tensor (L,)): Output tensor Y with values for each label predicition.
-
-        Returns:
-            Dict(str, str): Activated labels with their associated value in [0.001, 1].
-        '''
-        return {self.reverse_index[i]: f'{p:.3}' for i, p in enumerate(Y) if p >= 0.001}
-
-    def labels(self, Y, threshold=0.5) -> List[str]:
-        return [self.reverse_index[i] for i, p in enumerate(Y) if p >= threshold]
+from classifier.dataset.genres import Genres
+from classifier.dataset.tags import Tags
+from typing import Dict, Set
 
 
 class EspyDataset:
-    def __init__(self, examples, X, Y=[]) -> None:
+    def __init__(self, examples, tags, texts, genres=[], word_index: Dict[str, int] = {}) -> None:
         self.examples = examples
 
         # (N,F) dimentional tensor where N is the number of examples and F is
         # the size of their input feature vector.
-        self.X = X
-        # (N,C) dimentional tensor where N is the number of examples and C is
-        # the size of their output classification vector.
-        self.Y = Y
+        self.tags = tags
+
+        # (N,L) dimentional tensor where N is the number of examples and L is
+        # the size of their output label vector.
+        self.genres = genres
+
+        self.texts = texts
+        self.word_index = word_index
 
     def from_csv(filename):
         '''
@@ -143,10 +34,14 @@ class EspyDataset:
         '''
         examples = utils.load_examples(filename)
 
-        features = Features.load()
-        labels = Labels.load()
+        tags = Tags.load()
+        genres = Genres.load()
 
-        X, Y = [], []
+        keywords = set()
+        for tag in tags.tags:
+            keywords.add(tag.split('_')[-1].lower())
+
+        X, Y, texts = [], [], []
         for example in examples:
             # X input array dimensions are IGDB + Steam + GOG tags where the
             # value for each feature is the genres/tags position in the listing
@@ -165,7 +60,7 @@ class EspyDataset:
                 '|') if example.gog_tags else []
 
             X.append(
-                features.build_array(
+                tags.build_array(
                     igdb_genres=['IGDB_' + v for v in igdb_genres],
                     igdb_keywords=['KW_IGDB_' + v for v in igdb_keywords],
                     steam_genres=['STEAM_' + v for v in steam_genres],
@@ -175,10 +70,57 @@ class EspyDataset:
                 )
             )
 
-            # Y labels array represents the espy genres, where the value of each
+            text = extract_text(example.description, keywords)
+            texts.append(text)
+
+            # Y label array represents the espy genres, where the value of each
             # cell is either 0 or 1. Each example may be assigned a few genres.
             if example.espy_genres:
                 espy_genres = example.espy_genres.split('|')
-                Y.append(labels.build_array(espy_genres))
+                Y.append(genres.build_array(espy_genres))
 
-        return EspyDataset(examples, tf.concat(X, axis=0), tf.concat(Y, axis=0) if Y else [])
+        # plot([len(x) for x in texts])
+
+        texts_ds = tf_data.Dataset.from_tensor_slices(texts).batch(128)
+        vectorizer = tfl.TextVectorization(
+            max_tokens=20000, output_sequence_length=1000)
+        vectorizer.adapt(texts_ds)
+
+        vocab = vectorizer.get_vocabulary()
+        word_index = dict(zip(vocab, range(len(vocab))))
+
+        return EspyDataset(
+            examples,
+            tags=tf.concat(X, axis=0),
+            genres=tf.concat(Y, axis=0) if Y else [],
+            texts=vectorizer(np.array([[s] for s in texts])).numpy(),
+            word_index=word_index)
+
+
+def extract_text(description: str, keywords: Set[str]) -> str:
+    '''
+    Returns only the description sentences that match input keywords.
+    '''
+    sentences = description.lower().split('.')
+
+    text = []
+    for sentence in sentences:
+        for kw in keywords:
+            if kw in sentence:
+                text.append(sentence)
+
+    return ''.join(text)
+
+
+def plot(data):
+    # Create the histogram
+    plt.hist(data, bins=100, cumulative=True)
+
+    # Customize the plot (optional)
+    plt.xlabel("Values")
+    plt.ylabel("Frequency")
+    plt.title("Histogram of Sample Data")
+    plt.grid(True)
+
+    # Show the plot
+    plt.show()
