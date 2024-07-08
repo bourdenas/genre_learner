@@ -28,7 +28,7 @@ def build(embeddings_path: str, word_dict: Dict[str, int], genres: int):
     inputs = tf.keras.Input(shape=(None,), dtype='int32')
     embeddings = embedding_layer(inputs)
 
-    X = tfl.LSTM(units=512, return_sequences=True)(embeddings)
+    X = tfl.LSTM(units=1024, return_sequences=True)(embeddings)
     X = tfl.Dropout(0.2)(X)
     X = tfl.LSTM(units=512, return_sequences=False)(X)
     X = tfl.Dropout(0.2)(X)

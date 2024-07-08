@@ -42,5 +42,7 @@ if __name__ == "__main__":
         total_predictions += len(result)
         total_ground_truths += len(ground_truth)
 
+    print(f'wins={wins}')
+    print(f'predictions={total_predictions}')
     print(f'precision={(wins / total_predictions):.2}')
     print(f'recall={(wins / total_ground_truths):.2}')
