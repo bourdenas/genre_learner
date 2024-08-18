@@ -1,3 +1,4 @@
+import re
 import matplotlib.pyplot as plt
 import classifier.dataset.utils as utils
 import numpy as np
@@ -83,7 +84,7 @@ class EspyDataset:
 
         texts_ds = tf_data.Dataset.from_tensor_slices(texts).batch(128)
         vectorizer = tfl.TextVectorization(
-            max_tokens=20000, output_sequence_length=1000)
+            max_tokens=2000, output_sequence_length=1000)
         vectorizer.adapt(texts_ds)
 
         vocab = vectorizer.get_vocabulary()
@@ -101,7 +102,7 @@ def extract_text(description: str, keywords: Set[str]) -> str:
     '''
     Returns only the description sentences that match input keywords.
     '''
-    sentences = description.lower().split('.')
+    sentences = re.split('\.|\?|\!', description.lower())
 
     text = []
     for sentence in sentences:
@@ -109,7 +110,7 @@ def extract_text(description: str, keywords: Set[str]) -> str:
             if kw in sentence:
                 text.append(sentence)
 
-    return ''.join(text)
+    return '. '.join(text)
 
 
 def plot(data):

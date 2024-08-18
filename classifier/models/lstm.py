@@ -11,9 +11,9 @@ def build(embeddings_path: str, word_dict: Dict[str, int], genres: int):
     model's input is text vectorized with the input `word_dict`.
 
     Args:
-        embeddings_path: Filepath to the embeddings file. word_dict: Dictionary
-        from word to its index in the vocabulary. genres: Number of total genres
-        used in prediction.
+        embeddings_path: Filepath to the embeddings file.
+        word_dict: Dictionary from word to its index in the vocabulary.
+        genres: Number of total genres used in prediction.
     '''
     embedding_matrix = build_embedding_matrix(embeddings_path, word_dict)
     vocab_size, embedding_dim = embedding_matrix.shape
