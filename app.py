@@ -68,9 +68,9 @@ def handle_genres():
             gog_tags=[f'KW_GOG_{e}' for e in req.gog_tags],
         )
         Y = model(X)
-        genres = genres.labels(Y[0], threshold=.3333)
+        espy_genres = genres.labels(Y[0], threshold=.3333)
 
-        resp = GenresResponse(req.id, req.name, espy_genres=genres)
+        resp = GenresResponse(req.id, req.name, espy_genres=espy_genres)
         return jsonify(resp)
     except Exception as e:
         error_message = {'error': str(e)}
@@ -92,11 +92,11 @@ def handle_genres_debug():
             gog_tags=[f'KW_GOG_{e}' for e in req.gog_tags],
         )
         Y = model(X)
-        genres = genres.labels(Y[0], threshold=.3333)
+        espy_genres = genres.labels(Y[0], threshold=.3333)
         decoded = genres.decode_array(Y[0])
 
         resp = GenresResponse(
-            req.id, req.name, espy_genres=genres, debug_info=GenresDebugInfo(labels=decoded))
+            req.id, req.name, espy_genres=espy_genres, debug_info=GenresDebugInfo(labels=decoded))
         return jsonify(resp)
     except Exception as e:
         error_message = {'error': str(e)}
