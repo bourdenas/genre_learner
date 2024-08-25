@@ -1,856 +1,538 @@
-IGDB_Adventure
-IGDB_Arcade
-IGDB_CardAndBoard
-IGDB_Fighting
-IGDB_HackAndSlash
-IGDB_Indie
-IGDB_MOBA
-IGDB_Music
-IGDB_Pinball
-IGDB_Platformer
-IGDB_PointAndClick
-IGDB_Puzzle
-IGDB_Quiz
-IGDB_Racing
-IGDB_RealTimeStrategy
-IGDB_RPG
-IGDB_Shooter
-IGDB_Simulator
-IGDB_Sports
-IGDB_Strategy
-IGDB_Tactical
-IGDB_TurnBasedStrategy
-IGDB_VisualNovel
-KW_IGDB_2.5d
-KW_IGDB_2d
-KW_IGDB_2d platformer
-KW_IGDB_3d
-KW_IGDB_3d platformer
-KW_IGDB_abstract
-KW_IGDB_action-adventure
-KW_IGDB_adult
-KW_IGDB_aliens
-KW_IGDB_alternative history
-KW_IGDB_ancient greece
-KW_IGDB_anime
-KW_IGDB_anthropomorphism
-KW_IGDB_artificial intelligence
-KW_IGDB_atmospheric
-KW_IGDB_backtracking
-KW_IGDB_base building
-KW_IGDB_bloody
-KW_IGDB_boss fight
-KW_IGDB_branching storyline
-KW_IGDB_brawler
-KW_IGDB_building
-KW_IGDB_bullet hell
-KW_IGDB_bullet time
-KW_IGDB_capitalism
-KW_IGDB_cartoon graphics
-KW_IGDB_cartoony
-KW_IGDB_casual
-KW_IGDB_character creation
-KW_IGDB_character customization
-KW_IGDB_choices matter
-KW_IGDB_city builder
-KW_IGDB_combat flight simulator
-KW_IGDB_combat-based platformer
-KW_IGDB_construction
-KW_IGDB_cover system
-KW_IGDB_crafting
-KW_IGDB_crime
-KW_IGDB_crpg
-KW_IGDB_cute
-KW_IGDB_cyberpunk
-KW_IGDB_dark
-KW_IGDB_dark fantasy
-KW_IGDB_dark humor
-KW_IGDB_darkness
-KW_IGDB_dating
-KW_IGDB_dating simulation
-KW_IGDB_day/night cycle
-KW_IGDB_death match
-KW_IGDB_deck-building
-KW_IGDB_deliberately retro
-KW_IGDB_detective
-KW_IGDB_dialogue trees
-KW_IGDB_dungeon crawler
-KW_IGDB_dystopian
-KW_IGDB_economy
-KW_IGDB_endless runner
-KW_IGDB_environmental puzzles
-KW_IGDB_exploration
-KW_IGDB_extreme violence
-KW_IGDB_falling damage
-KW_IGDB_family friendly
-KW_IGDB_farming simulator
-KW_IGDB_film noir
-KW_IGDB_first person adventure
-KW_IGDB_first person shooter
-KW_IGDB_first-person platforming
-KW_IGDB_flight
-KW_IGDB_flight simulator
-KW_IGDB_fps
-KW_IGDB_free-to-play
-KW_IGDB_full motion video
-KW_IGDB_futuristic
-KW_IGDB_gambling
-KW_IGDB_gore
-KW_IGDB_grand strategy
-KW_IGDB_graphic adventure
-KW_IGDB_greek mythology
-KW_IGDB_grid-based movement
-KW_IGDB_grinding
-KW_IGDB_hand-drawn
-KW_IGDB_hand-to-hand combat
-KW_IGDB_heavy metal
-KW_IGDB_immersive
-KW_IGDB_in-game map editor
-KW_IGDB_instant kill
-KW_IGDB_interactive fiction
-KW_IGDB_interactive movie
-KW_IGDB_jrpg
-KW_IGDB_leveling up
-KW_IGDB_life simulation
-KW_IGDB_linear gameplay
-KW_IGDB_lovecraftian
-KW_IGDB_macromanagement
-KW_IGDB_magic
-KW_IGDB_management
-KW_IGDB_martial arts
-KW_IGDB_match 3
-KW_IGDB_mech
-KW_IGDB_medieval
-KW_IGDB_melee
-KW_IGDB_metroidvania
-KW_IGDB_micromanagement
-KW_IGDB_microtransaction
-KW_IGDB_mmorpg
-KW_IGDB_modern military
-KW_IGDB_modern warfare
-KW_IGDB_moral decisions
-KW_IGDB_motorsports
-KW_IGDB_moving platforms
-KW_IGDB_multiple endings
-KW_IGDB_murder
-KW_IGDB_music and rhythm
-KW_IGDB_mutants
-KW_IGDB_mythology
-KW_IGDB_narrative adventure
-KW_IGDB_naval warfare
-KW_IGDB_nudity
-KW_IGDB_online
-KW_IGDB_over the shoulder
-KW_IGDB_party system
-KW_IGDB_party-based combat
-KW_IGDB_pausable real time combat
-KW_IGDB_pay-to-play
-KW_IGDB_permadeath
-KW_IGDB_persistent world
-KW_IGDB_pinball
-KW_IGDB_pirates
-KW_IGDB_pixel art
-KW_IGDB_pixel graphics
-KW_IGDB_player vs player
-KW_IGDB_polygonal 3d
-KW_IGDB_post-apocalyptic
-KW_IGDB_procedural generation
-KW_IGDB_procedurally generated
-KW_IGDB_profanity
-KW_IGDB_psychological horror
-KW_IGDB_psychological thriller
-KW_IGDB_puzzle platformer
-KW_IGDB_pvp
-KW_IGDB_questing
-KW_IGDB_quick time event
-KW_IGDB_ragdoll physics
-KW_IGDB_rail shooter
-KW_IGDB_real time tactics
-KW_IGDB_real-time
-KW_IGDB_real-time combat
-KW_IGDB_realism
-KW_IGDB_relaxing
-KW_IGDB_resource gathering
-KW_IGDB_resource management
-KW_IGDB_retro
-KW_IGDB_robots
-KW_IGDB_roguelike
-KW_IGDB_roguelite
-KW_IGDB_roman empire
-KW_IGDB_rpg elements
-KW_IGDB_run and gun
-KW_IGDB_sexual content
-KW_IGDB_shmup
-KW_IGDB_shoot 'em up
-KW_IGDB_shopping
-KW_IGDB_side quests
-KW_IGDB_side-scrolling
-KW_IGDB_single-player only
-KW_IGDB_skill tree
-KW_IGDB_soulslike
-KW_IGDB_space
-KW_IGDB_space battle
-KW_IGDB_space combat
-KW_IGDB_space simulation
-KW_IGDB_spaceship
-KW_IGDB_sprinting mechanics
-KW_IGDB_star wars
-KW_IGDB_steampunk
-KW_IGDB_story rich
-KW_IGDB_submarine
-KW_IGDB_super soldier
-KW_IGDB_surreal
-KW_IGDB_survival horror
-KW_IGDB_sword & sorcery
-KW_IGDB_tactical turn-based combat
-KW_IGDB_tank
-KW_IGDB_team deathmatch
-KW_IGDB_tech trees
-KW_IGDB_text adventure
-KW_IGDB_time travel
-KW_IGDB_top-down perspective
-KW_IGDB_tower defense
-KW_IGDB_truck simulator
-KW_IGDB_turn-based
-KW_IGDB_turn-based combat
-KW_IGDB_turn-based rpg
-KW_IGDB_turn-based tactics
-KW_IGDB_twin stick control
-KW_IGDB_useable vehicles
-KW_IGDB_vampire
-KW_IGDB_vehicle combat
-KW_IGDB_vehicular combat
-KW_IGDB_violence
-KW_IGDB_violent
-KW_IGDB_walking simulator
-KW_IGDB_war
-KW_IGDB_wasd movement
-KW_IGDB_western
-KW_IGDB_wizards
-KW_IGDB_world map
-KW_IGDB_world war i - ww1
-KW_IGDB_world war ii - ww2
-KW_IGDB_zombies
-KW_STEAM_1980s
-KW_STEAM_2.5D
-KW_STEAM_2D
-KW_STEAM_2D Fighter
-KW_STEAM_2D Platformer
-KW_STEAM_3D
-KW_STEAM_3D Fighter
-KW_STEAM_3D Platformer
-KW_STEAM_3D Vision
-KW_STEAM_4 Player Local
-KW_STEAM_4X
-KW_STEAM_6DOF
-KW_STEAM_Abstract
-KW_STEAM_Action
-KW_STEAM_Action Roguelike
-KW_STEAM_Action RPG
-KW_STEAM_Action RTS
-KW_STEAM_Action-Adventure
-KW_STEAM_Addictive
-KW_STEAM_Adventure
-KW_STEAM_Agriculture
-KW_STEAM_Aliens
-KW_STEAM_Alternate History
-KW_STEAM_Ambient
-KW_STEAM_America
-KW_STEAM_Anime
-KW_STEAM_Arcade
-KW_STEAM_Archery
-KW_STEAM_Arena Shooter
-KW_STEAM_Artificial Intelligence
-KW_STEAM_Assassin
-KW_STEAM_Asynchronous Multiplayer
-KW_STEAM_Atmospheric
-KW_STEAM_ATV
-KW_STEAM_Auto Battler
-KW_STEAM_Automation
-KW_STEAM_Automobile Sim
-KW_STEAM_Base Building
-KW_STEAM_Baseball
-KW_STEAM_Based On A Novel
-KW_STEAM_Basketball
-KW_STEAM_Battle Royale
-KW_STEAM_Beat 'em up
-KW_STEAM_Beautiful
-KW_STEAM_Benchmark
-KW_STEAM_Bikes
-KW_STEAM_Blood
-KW_STEAM_Board Game
-KW_STEAM_Boomer Shooter
-KW_STEAM_Boss Rush
-KW_STEAM_Boxing
-KW_STEAM_Building
-KW_STEAM_Bullet Hell
-KW_STEAM_Bullet Time
-KW_STEAM_Capitalism
-KW_STEAM_Card Battler
-KW_STEAM_Card Game
-KW_STEAM_Cartoon
-KW_STEAM_Cartoony
-KW_STEAM_Casual
-KW_STEAM_Cats
-KW_STEAM_Character Action Game
-KW_STEAM_Character Customization
-KW_STEAM_Chess
-KW_STEAM_Choices Matter
-KW_STEAM_Choose Your Own Adventure
-KW_STEAM_Cinematic
-KW_STEAM_City Builder
-KW_STEAM_Class-Based
-KW_STEAM_Classic
-KW_STEAM_Clicker
-KW_STEAM_Co-op
-KW_STEAM_Co-op Campaign
-KW_STEAM_Cold War
-KW_STEAM_Collectathon
-KW_STEAM_Colony Sim
-KW_STEAM_Colorful
-KW_STEAM_Combat
-KW_STEAM_Combat Racing
-KW_STEAM_Comedy
-KW_STEAM_Comic Book
-KW_STEAM_Competitive
-KW_STEAM_Conspiracy
-KW_STEAM_Controller
-KW_STEAM_Conversation
-KW_STEAM_Cooking
-KW_STEAM_Cozy
-KW_STEAM_Crafting
-KW_STEAM_Creature Collector
-KW_STEAM_Crime
-KW_STEAM_Crowdfunded
-KW_STEAM_CRPG
-KW_STEAM_Cult Classic
-KW_STEAM_Cute
-KW_STEAM_Cyberpunk
-KW_STEAM_Cycling
-KW_STEAM_Dark
-KW_STEAM_Dark Comedy
-KW_STEAM_Dark Fantasy
-KW_STEAM_Dark Humor
-KW_STEAM_Dating Sim
-KW_STEAM_Deckbuilding
-KW_STEAM_Demons
-KW_STEAM_Design & Illustration
-KW_STEAM_Destruction
-KW_STEAM_Detective
-KW_STEAM_Difficult
-KW_STEAM_Dinosaurs
-KW_STEAM_Diplomacy
-KW_STEAM_Documentary
-KW_STEAM_Dog
-KW_STEAM_Dragons
-KW_STEAM_Drama
-KW_STEAM_Driving
-KW_STEAM_Dungeon Crawler
-KW_STEAM_Dungeons & Dragons
-KW_STEAM_Dwarf
-KW_STEAM_Dynamic Narration
-KW_STEAM_Dystopian
-KW_STEAM_Early Access
-KW_STEAM_Economy
-KW_STEAM_Education
-KW_STEAM_Electronic
-KW_STEAM_Electronic Music
-KW_STEAM_Elf
-KW_STEAM_Emotional
-KW_STEAM_Epic
-KW_STEAM_Episodic
-KW_STEAM_Escape Room
-KW_STEAM_eSports
-KW_STEAM_Experience
-KW_STEAM_Experimental
-KW_STEAM_Exploration
-KW_STEAM_Extraction Shooter
-KW_STEAM_Family Friendly
-KW_STEAM_Fantasy
-KW_STEAM_Farming
-KW_STEAM_Farming Sim
-KW_STEAM_Fast-Paced
-KW_STEAM_Female Protagonist
-KW_STEAM_Fighting
-KW_STEAM_First-Person
-KW_STEAM_Fishing
-KW_STEAM_Flight
-KW_STEAM_FMV
-KW_STEAM_Football (American)
-KW_STEAM_Football (Soccer)
-KW_STEAM_Fox
-KW_STEAM_FPS
-KW_STEAM_Free to Play
-KW_STEAM_Funny
-KW_STEAM_Futuristic
-KW_STEAM_Gambling
-KW_STEAM_Game Development
-KW_STEAM_GameMaker
-KW_STEAM_Games Workshop
-KW_STEAM_Gaming
-KW_STEAM_God Game
-KW_STEAM_Golf
-KW_STEAM_Gore
-KW_STEAM_Gothic
-KW_STEAM_Grand Strategy
-KW_STEAM_Great Soundtrack
-KW_STEAM_Grid-Based Movement
-KW_STEAM_Gun Customization
-KW_STEAM_Hack and Slash
-KW_STEAM_Hacking
-KW_STEAM_Hand-drawn
-KW_STEAM_Hardware
-KW_STEAM_Heist
-KW_STEAM_Hentai
-KW_STEAM_Hero Shooter
-KW_STEAM_Hex Grid
-KW_STEAM_Hidden Object
-KW_STEAM_Historical
-KW_STEAM_Hockey
-KW_STEAM_Horror
-KW_STEAM_Horses
-KW_STEAM_Hunting
-KW_STEAM_Idler
-KW_STEAM_Illuminati
-KW_STEAM_Immersive
-KW_STEAM_Immersive Sim
-KW_STEAM_Indie
-KW_STEAM_Instrumental Music
-KW_STEAM_Interactive Fiction
-KW_STEAM_Inventory Management
-KW_STEAM_Investigation
-KW_STEAM_Isometric
-KW_STEAM_Jet
-KW_STEAM_Job Simulator
-KW_STEAM_JRPG
-KW_STEAM_Kickstarter
-KW_STEAM_LEGO
-KW_STEAM_Lemmings
-KW_STEAM_Level Editor
-KW_STEAM_LGBTQ+
-KW_STEAM_Life Sim
-KW_STEAM_Linear
-KW_STEAM_Local Co-Op
-KW_STEAM_Local Multiplayer
-KW_STEAM_Logic
-KW_STEAM_Loot
-KW_STEAM_Looter Shooter
-KW_STEAM_Lore-Rich
-KW_STEAM_Lovecraftian
-KW_STEAM_Magic
-KW_STEAM_Management
-KW_STEAM_Mars
-KW_STEAM_Martial Arts
-KW_STEAM_Massively Multiplayer
-KW_STEAM_Match 3
-KW_STEAM_Mature
-KW_STEAM_Mechs
-KW_STEAM_Medical Sim
-KW_STEAM_Medieval
-KW_STEAM_Memes
-KW_STEAM_Metroidvania
-KW_STEAM_Military
-KW_STEAM_Minigames
-KW_STEAM_Minimalist
-KW_STEAM_Mining
-KW_STEAM_MMORPG
-KW_STEAM_MOBA
-KW_STEAM_Mod
-KW_STEAM_Moddable
-KW_STEAM_Modern
-KW_STEAM_Motocross
-KW_STEAM_Motorbike
-KW_STEAM_Mouse only
-KW_STEAM_Movie
-KW_STEAM_Multiplayer
-KW_STEAM_Multiple Endings
-KW_STEAM_Music
-KW_STEAM_Music-Based Procedural Generation
-KW_STEAM_Musou
-KW_STEAM_Mystery
-KW_STEAM_Mystery Dungeon
-KW_STEAM_Mythology
-KW_STEAM_Narration
-KW_STEAM_Narrative
-KW_STEAM_Nature
-KW_STEAM_Naval
-KW_STEAM_Naval Combat
-KW_STEAM_Ninja
-KW_STEAM_Noir
-KW_STEAM_Nonlinear
-KW_STEAM_Nostalgia
-KW_STEAM_NSFW
-KW_STEAM_Nudity
-KW_STEAM_Offroad
-KW_STEAM_Old School
-KW_STEAM_On-Rails Shooter
-KW_STEAM_Online Co-Op
-KW_STEAM_Open World
-KW_STEAM_Open World Survival Craft
-KW_STEAM_Outbreak Sim
-KW_STEAM_Parkour
-KW_STEAM_Parody
-KW_STEAM_Party
-KW_STEAM_Party Game
-KW_STEAM_Party-Based RPG
-KW_STEAM_Perma Death
-KW_STEAM_Philosophical
-KW_STEAM_Photo Editing
-KW_STEAM_Physics
-KW_STEAM_Pinball
-KW_STEAM_Pirates
-KW_STEAM_Pixel Graphics
-KW_STEAM_Platformer
-KW_STEAM_Point & Click
-KW_STEAM_Political
-KW_STEAM_Political Sim
-KW_STEAM_Politics
-KW_STEAM_Post-apocalyptic
-KW_STEAM_Precision Platformer
-KW_STEAM_Procedural Generation
-KW_STEAM_Programming
-KW_STEAM_Psychedelic
-KW_STEAM_Psychological
-KW_STEAM_Psychological Horror
-KW_STEAM_Puzzle
-KW_STEAM_Puzzle Platformer
-KW_STEAM_PvE
-KW_STEAM_PvP
-KW_STEAM_Quick-Time Events
-KW_STEAM_Racing
-KW_STEAM_Real Time Tactics
-KW_STEAM_Real-Time
-KW_STEAM_Real-Time with Pause
-KW_STEAM_Realistic
-KW_STEAM_Reboot
-KW_STEAM_Relaxing
-KW_STEAM_Remake
-KW_STEAM_Replay Value
-KW_STEAM_Resource Management
-KW_STEAM_Retro
-KW_STEAM_Rhythm
-KW_STEAM_Robots
-KW_STEAM_Rock Music
-KW_STEAM_Roguelike
-KW_STEAM_Roguelike Deckbuilder
-KW_STEAM_Roguelite
-KW_STEAM_Roguevania
-KW_STEAM_Romance
-KW_STEAM_Rome
-KW_STEAM_RPG
-KW_STEAM_RPGMaker
-KW_STEAM_RTS
-KW_STEAM_Runner
-KW_STEAM_Sailing
-KW_STEAM_Sandbox
-KW_STEAM_Satire
-KW_STEAM_Sci-fi
-KW_STEAM_Science
-KW_STEAM_Score Attack
-KW_STEAM_Sequel
-KW_STEAM_Sexual Content
-KW_STEAM_Shoot 'Em Up
-KW_STEAM_Shooter
-KW_STEAM_Short
-KW_STEAM_Side Scroller
-KW_STEAM_Silent Protagonist
-KW_STEAM_Simulation
-KW_STEAM_Singleplayer
-KW_STEAM_Skateboarding
-KW_STEAM_Sniper
-KW_STEAM_Snow
-KW_STEAM_Social Deduction
-KW_STEAM_Sokoban
-KW_STEAM_Solitaire
-KW_STEAM_Souls-like
-KW_STEAM_Soundtrack
-KW_STEAM_Space
-KW_STEAM_Space Sim
-KW_STEAM_Spaceships
-KW_STEAM_Spectacle fighter
-KW_STEAM_Split Screen
-KW_STEAM_Sports
-KW_STEAM_Stealth
-KW_STEAM_Steampunk
-KW_STEAM_Story Rich
-KW_STEAM_Strategy
-KW_STEAM_Strategy RPG
-KW_STEAM_Stylized
-KW_STEAM_Submarine
-KW_STEAM_Superhero
-KW_STEAM_Supernatural
-KW_STEAM_Surreal
-KW_STEAM_Survival
-KW_STEAM_Survival Horror
-KW_STEAM_Swordplay
-KW_STEAM_Tabletop
-KW_STEAM_Tactical
-KW_STEAM_Tactical RPG
-KW_STEAM_Tanks
-KW_STEAM_Team-Based
-KW_STEAM_Text-Based
-KW_STEAM_Third Person
-KW_STEAM_Third-Person Shooter
-KW_STEAM_Thriller
-KW_STEAM_Time Attack
-KW_STEAM_Time Management
-KW_STEAM_Time Manipulation
-KW_STEAM_Time Travel
-KW_STEAM_Top-Down
-KW_STEAM_Top-Down Shooter
-KW_STEAM_Touch-Friendly
-KW_STEAM_Tower Defense
-KW_STEAM_TrackIR
-KW_STEAM_Trading
-KW_STEAM_Trading Card Game
-KW_STEAM_Traditional Roguelike
-KW_STEAM_Trains
-KW_STEAM_Transhumanism
-KW_STEAM_Transportation
-KW_STEAM_Trivia
-KW_STEAM_Turn-Based
-KW_STEAM_Turn-Based Combat
-KW_STEAM_Turn-Based Strategy
-KW_STEAM_Turn-Based Tactics
-KW_STEAM_Tutorial
-KW_STEAM_Twin Stick Shooter
-KW_STEAM_Typing
-KW_STEAM_Underground
-KW_STEAM_Underwater
-KW_STEAM_Unforgiving
-KW_STEAM_Vampire
-KW_STEAM_Vehicular Combat
-KW_STEAM_Vikings
-KW_STEAM_Villain Protagonist
-KW_STEAM_Violent
-KW_STEAM_Visual Novel
-KW_STEAM_Volleyball
-KW_STEAM_Voxel
-KW_STEAM_VR
-KW_STEAM_Walking Simulator
-KW_STEAM_War
-KW_STEAM_Wargame
-KW_STEAM_Warhammer 40K
-KW_STEAM_Well-Written
-KW_STEAM_Werewolves
-KW_STEAM_Western
-KW_STEAM_Wholesome
-KW_STEAM_World War I
-KW_STEAM_World War II
-KW_STEAM_Wrestling
-KW_STEAM_Zombies
-STEAM_Action
-STEAM_Adventure
-STEAM_Casual
-STEAM_Design & Illustration
-STEAM_Early Access
-STEAM_Education
-STEAM_Free to Play
-STEAM_Game Development
-STEAM_Gore
-STEAM_Indie
-STEAM_Massively Multiplayer
-STEAM_Movie
-STEAM_Nudity
-STEAM_Racing
-STEAM_RPG
-STEAM_Sexual Content
-STEAM_Simulation
-STEAM_Sports
-STEAM_Strategy
-STEAM_Violent
-STEAM_Web Publishing
-GOG_action
-GOG_adventure
-GOG_arcade
-GOG_building
-GOG_card-game
-GOG_chess
-GOG_combat
-GOG_comedy
-GOG_detective
-GOG_economic
-GOG_espionage
-GOG_exploration
-GOG_fantasy
-GOG_fighting
-GOG_fpp
-GOG_hidden-object
-GOG_historical
-GOG_horror
-GOG_jrpg
-GOG_managerial
-GOG_metroidvania
-GOG_modern
-GOG_mystery
-GOG_narrative
-GOG_naval
-GOG_offroad
-GOG_open-world
-GOG_pinball
-GOG_platformer
-GOG_pointandclick
-GOG_puzzle
-GOG_racing
-GOG_rally
-GOG_realtime
-GOG_rougelike
-GOG_rpg
-GOG_sandbox
-GOG_scifi
-GOG_shoot-em-up
-GOG_shooter
-GOG_simulation
-GOG_sports
-GOG_stealth
-GOG_strategy
-GOG_survival
-GOG_tactical
-GOG_tpp
-GOG_turnbased
-GOG_virtuallife
-GOG_visual-novel
-KW_GOG_action
-KW_GOG_adventure
-KW_GOG_arcade
-KW_GOG_auto-battler
-KW_GOG_base-building
-KW_GOG_beat-em-up
-KW_GOG_board-game
-KW_GOG_building
-KW_GOG_bullet-hell
-KW_GOG_card-game
-KW_GOG_casual
-KW_GOG_chess
-KW_GOG_choices-matter
-KW_GOG_choose-your-own-adventure
-KW_GOG_city-builder
-KW_GOG_classic
-KW_GOG_combat
-KW_GOG_cozy
-KW_GOG_crafting
-KW_GOG_crpg
-KW_GOG_cyberpunk
-KW_GOG_dating-sim
-KW_GOG_deckbuilding
-KW_GOG_dungeon-crawler
-KW_GOG_economic
-KW_GOG_education
-KW_GOG_escape-room
-KW_GOG_exploration
-KW_GOG_family-friendly
-KW_GOG_fighting
-KW_GOG_first-person
-KW_GOG_fishing
-KW_GOG_flight
-KW_GOG_four-x
-KW_GOG_fps
-KW_GOG_good-old-game
-KW_GOG_grand-strategy
-KW_GOG_hack-and-slash
-KW_GOG_horror
-KW_GOG_indie
-KW_GOG_investigation
-KW_GOG_isometric
-KW_GOG_jrpg
-KW_GOG_lifesim
-KW_GOG_logic
-KW_GOG_looter-shooter
-KW_GOG_lovecraftian
-KW_GOG_magic
-KW_GOG_management
-KW_GOG_managerial
-KW_GOG_martial-arts
-KW_GOG_match-three
-KW_GOG_mature
-KW_GOG_medieval
-KW_GOG_metroidvania
-KW_GOG_military
-KW_GOG_modern
-KW_GOG_movie
-KW_GOG_multiplayer
-KW_GOG_multiple-endings
-KW_GOG_narrative
-KW_GOG_naval
-KW_GOG_noir
-KW_GOG_non-violent
-KW_GOG_nsfw
-KW_GOG_nudity
-KW_GOG_offroad
-KW_GOG_online-only
-KW_GOG_only-on-gog
-KW_GOG_open-world
-KW_GOG_parody
-KW_GOG_party-game
-KW_GOG_perma-death
-KW_GOG_philosophical
-KW_GOG_physics
-KW_GOG_pinball
-KW_GOG_pixel-graphics
-KW_GOG_platformer
-KW_GOG_point-and-click
-KW_GOG_politics
-KW_GOG_post-apocalyptic
-KW_GOG_procedural-generation
-KW_GOG_psychological
-KW_GOG_psychological-horror
-KW_GOG_puzzle
-KW_GOG_puzzle-platformer
-KW_GOG_racing
-KW_GOG_rally
-KW_GOG_real-time
-KW_GOG_realistic
-KW_GOG_relaxing
-KW_GOG_resource-management
-KW_GOG_retro
-KW_GOG_rhythm
-KW_GOG_robots
-KW_GOG_roguelike
-KW_GOG_roguelite
-KW_GOG_role-playing
-KW_GOG_romance
-KW_GOG_rts
-KW_GOG_sandbox
-KW_GOG_sci-fi
-KW_GOG_science
-KW_GOG_sexual-content
-KW_GOG_shoot-em-up
-KW_GOG_shooter
-KW_GOG_simulation
-KW_GOG_souls-like
-KW_GOG_space
-KW_GOG_split-screen
-KW_GOG_sports
-KW_GOG_stealth
-KW_GOG_story-rich
-KW_GOG_strategy
-KW_GOG_supernatural
-KW_GOG_surreal
-KW_GOG_survival
-KW_GOG_survival-horror
-KW_GOG_tabletop
-KW_GOG_tactical
-KW_GOG_tactical-rpg
-KW_GOG_tanks
-KW_GOG_text-based
-KW_GOG_third-person
-KW_GOG_thriller
-KW_GOG_top-down
-KW_GOG_tower-defense
-KW_GOG_trading
-KW_GOG_trains
-KW_GOG_transportation
-KW_GOG_turn-based
-KW_GOG_twin-stick-shooter
-KW_GOG_two-dimensional
-KW_GOG_typing
-KW_GOG_underground
-KW_GOG_underwater
-KW_GOG_violent
-KW_GOG_virtual-life
-KW_GOG_visual-novel
-KW_GOG_walking-simulator
-KW_GOG_war
-KW_GOG_western
-KW_GOG_world-war-i
-KW_GOG_world-war-ii
+1980s
+2.5d
+2d
+2d fighter
+2d platformer
+3d
+3d fighter
+3d platformer
+3d vision
+4 player local
+4x
+6dof
+abstract
+action
+action adventure
+action roguelike
+action rpg
+action rts
+addictive
+adult
+adventure
+agriculture
+aliens
+alternate history
+alternative history
+ambient
+america
+ancient greece
+anime
+anthropomorphism
+arcade
+archery
+arena shooter
+artificial intelligence
+assassin
+asynchronous multiplayer
+atmospheric
+atv
+auto battler
+automation
+automobile sim
+backtracking
+base building
+baseball
+based on a novel
+basketball
+battle royale
+beat em up
+beautiful
+benchmark
+bikes
+blood
+bloody
+board game
+boomer shooter
+boss fight
+boss rush
+boxing
+branching storyline
+brawler
+building
+bullet hell
+bullet time
+capitalism
+card battler
+card game
+cartoon
+cartoon graphics
+cartoony
+casual
+cats
+character action game
+character creation
+character customization
+chess
+choices matter
+choose your own adventure
+cinematic
+city builder
+class based
+classic
+clicker
+co op
+co op campaign
+cold war
+collectathon
+colony sim
+colorful
+combat
+combat based platformer
+combat flight simulator
+combat racing
+comedy
+comic book
+competitive
+conspiracy
+construction
+controller
+conversation
+cooking
+cover system
+cozy
+crafting
+creature collector
+crime
+crowdfunded
+crpg
+cult classic
+cute
+cyberpunk
+cycling
+dark
+dark comedy
+dark fantasy
+dark humor
+darkness
+dating
+dating sim
+dating simulation
+day/night cycle
+death match
+deck building
+deckbuilding
+deliberately retro
+demons
+design & illustration
+destruction
+detective
+dialogue trees
+difficult
+dinosaurs
+diplomacy
+documentary
+dog
+dragons
+drama
+driving
+dungeon crawler
+dungeons & dragons
+dwarf
+dynamic narration
+dystopian
+early access
+economic
+economy
+education
+electronic
+electronic music
+elf
+emotional
+endless runner
+environmental puzzles
+epic
+episodic
+escape room
+esports
+experience
+experimental
+exploration
+extraction shooter
+extreme violence
+falling damage
+family friendly
+fantasy
+farming
+farming sim
+farming simulator
+fast paced
+female protagonist
+fighting
+film noir
+first person
+first person adventure
+first person platforming
+first person shooter
+fishing
+flight
+flight simulator
+fmv
+football (american)
+football (soccer)
+four x
+fox
+fps
+free to play
+full motion video
+funny
+futuristic
+gambling
+game development
+gamemaker
+games workshop
+gaming
+god game
+golf
+good old game
+gore
+gothic
+grand strategy
+graphic adventure
+great soundtrack
+greek mythology
+grid based movement
+grinding
+gun customization
+hack and slash
+hacking
+hand drawn
+hand to hand combat
+hardware
+heavy metal
+heist
+hentai
+hero shooter
+hex grid
+hidden object
+historical
+hockey
+horror
+horses
+hunting
+idler
+illuminati
+immersive
+immersive sim
+in game map editor
+indie
+instant kill
+instrumental music
+interactive fiction
+interactive movie
+inventory management
+investigation
+isometric
+jet
+job simulator
+jrpg
+kickstarter
+lego
+lemmings
+level editor
+leveling up
+lgbtq+
+life sim
+life simulation
+lifesim
+linear
+linear gameplay
+local co op
+local multiplayer
+logic
+loot
+looter shooter
+lore rich
+lovecraftian
+macromanagement
+magic
+management
+managerial
+mars
+martial arts
+massively multiplayer
+match 3
+match three
+mature
+mech
+mechs
+medical sim
+medieval
+melee
+memes
+metroidvania
+micromanagement
+microtransaction
+military
+minigames
+minimalist
+mining
+mmorpg
+moba
+mod
+moddable
+modern
+modern military
+modern warfare
+moral decisions
+motocross
+motorbike
+motorsports
+mouse only
+movie
+moving platforms
+multiplayer
+multiple endings
+murder
+music
+music and rhythm
+music based procedural generation
+musou
+mutants
+mystery
+mystery dungeon
+mythology
+narration
+narrative
+narrative adventure
+nature
+naval
+naval combat
+naval warfare
+ninja
+noir
+non violent
+nonlinear
+nostalgia
+nsfw
+nudity
+offroad
+old school
+on rails shooter
+online
+online co op
+online only
+only on gog
+open world
+open world survival craft
+outbreak sim
+over the shoulder
+parkour
+parody
+party
+party based combat
+party based rpg
+party game
+party system
+pausable real time combat
+pay to play
+perma death
+permadeath
+persistent world
+philosophical
+photo editing
+physics
+pinball
+pirates
+pixel art
+pixel graphics
+platformer
+player vs player
+point & click
+point and click
+political
+political sim
+politics
+polygonal 3d
+post apocalyptic
+precision platformer
+procedural generation
+procedurally generated
+profanity
+programming
+psychedelic
+psychological
+psychological horror
+psychological thriller
+puzzle
+puzzle platformer
+pve
+pvp
+questing
+quick time event
+quick time events
+racing
+ragdoll physics
+rail shooter
+rally
+real time
+real time combat
+real time tactics
+real time with pause
+realism
+realistic
+reboot
+relaxing
+remake
+replay value
+resource gathering
+resource management
+retro
+rhythm
+robots
+rock music
+roguelike
+roguelike deckbuilder
+roguelite
+roguevania
+role playing
+roman empire
+romance
+rome
+rpg
+rpg elements
+rpgmaker
+rts
+run and gun
+runner
+sailing
+sandbox
+satire
+sci fi
+science
+score attack
+sequel
+sexual content
+shmup
+shoot em up
+shooter
+shopping
+short
+side quests
+side scroller
+side scrolling
+silent protagonist
+simulation
+single player only
+singleplayer
+skateboarding
+skill tree
+sniper
+snow
+social deduction
+sokoban
+solitaire
+souls like
+soulslike
+soundtrack
+space
+space battle
+space combat
+space sim
+space simulation
+spaceship
+spaceships
+spectacle fighter
+split screen
+sports
+sprinting mechanics
+star wars
+stealth
+steampunk
+story rich
+strategy
+strategy rpg
+stylized
+submarine
+super soldier
+superhero
+supernatural
+surreal
+survival
+survival horror
+sword & sorcery
+swordplay
+tabletop
+tactical
+tactical rpg
+tactical turn based combat
+tank
+tanks
+team based
+team deathmatch
+tech trees
+text adventure
+text based
+third person
+third person shooter
+thriller
+time attack
+time management
+time manipulation
+time travel
+top down
+top down perspective
+top down shooter
+touch friendly
+tower defense
+trackir
+trading
+trading card game
+traditional roguelike
+trains
+transhumanism
+transportation
+trivia
+truck simulator
+turn based
+turn based combat
+turn based rpg
+turn based strategy
+turn based tactics
+tutorial
+twin stick control
+twin stick shooter
+two dimensional
+typing
+underground
+underwater
+unforgiving
+useable vehicles
+vampire
+vehicle combat
+vehicular combat
+vikings
+villain protagonist
+violence
+violent
+virtual life
+visual novel
+volleyball
+voxel
+vr
+walking simulator
+war
+wargame
+warhammer 40k
+wasd movement
+well written
+werewolves
+western
+wholesome
+wizards
+world map
+world war i
+world war i   ww1
+world war ii
+world war ii   ww2
+wrestling
+zombies

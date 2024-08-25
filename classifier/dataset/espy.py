@@ -7,17 +7,17 @@ import tensorflow.data as tf_data
 import tensorflow.keras.layers as tfl
 
 from classifier.dataset.genres import Genres
-from classifier.dataset.tags import Tags
+from classifier.dataset.features import Features
 from typing import Dict, Set
 
 
 class EspyDataset:
-    def __init__(self, examples, tags, texts, genres=[], word_index: Dict[str, int] = {}) -> None:
+    def __init__(self, examples, features, texts, genres=[], word_index: Dict[str, int] = {}) -> None:
         self.examples = examples
 
         # (N,F) dimentional tensor where N is the number of examples and F is
         # the size of their input feature vector.
-        self.tags = tags
+        self.features = features
 
         # (N,L) dimentional tensor where N is the number of examples and L is
         # the size of their output label vector.
@@ -35,11 +35,11 @@ class EspyDataset:
         '''
         examples = utils.load_examples(filename)
 
-        tags = Tags.load()
+        features = Features.load()
         genres = Genres.load()
 
         keywords = set()
-        for tag in tags.tags:
+        for tag in features.tags:
             keywords.add(tag.split('_')[-1].lower())
 
         X, Y, texts = [], [], []
@@ -61,13 +61,14 @@ class EspyDataset:
                 '|') if example.gog_tags else []
 
             X.append(
-                tags.build_array(
-                    igdb_genres=['IGDB_' + v for v in igdb_genres],
-                    igdb_keywords=['KW_IGDB_' + v for v in igdb_keywords],
-                    steam_genres=['STEAM_' + v for v in steam_genres],
-                    steam_tags=['KW_STEAM_' + v for v in steam_tags],
-                    gog_genres=['GOG_' + v for v in gog_genres],
-                    gog_tags=['KW_GOG_' + v for v in gog_tags],
+                features.build_array(
+                    igdb_genres=igdb_genres,
+                    steam_genres=steam_genres,
+                    gog_genres=gog_genres,
+                    igdb_keywords=igdb_keywords,
+                    steam_tags=steam_tags,
+                    gog_tags=gog_tags,
+                    description=example.description,
                 )
             )
 
@@ -92,7 +93,7 @@ class EspyDataset:
 
         return EspyDataset(
             examples,
-            tags=tf.concat(X, axis=0),
+            features=tf.concat(X, axis=0),
             genres=tf.concat(Y, axis=0) if Y else [],
             texts=vectorizer(np.array([[s] for s in texts])).numpy(),
             word_index=word_index)

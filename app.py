@@ -2,7 +2,7 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'    # nopep8
 
 from classifier.dataset.genres import Genres
-from classifier.dataset.tags import Tags
+from classifier.dataset.features import Features
 from typing import Dict, List
 from dataclasses_json import dataclass_json
 from dataclasses import dataclass, field
@@ -25,6 +25,7 @@ class GenresRequest:
     steam_tags: List[str] = field(default_factory=list)
     gog_genres: List[str] = field(default_factory=list)
     gog_tags: List[str] = field(default_factory=list)
+    description: str = field(default='')
 
 
 @dataclass_json
@@ -42,7 +43,7 @@ class GenresResponse:
     debug_info: GenresDebugInfo = field(default_factory=dict)
 
 
-tags = Tags.load()
+features = Features.load()
 genres = Genres.load()
 model = None
 
@@ -59,16 +60,17 @@ def handle_genres():
         json = request.get_json()
         req = GenresRequest(**json)
 
-        X = tags.build_array(
-            igdb_genres=[f'IGDB_{e}' for e in req.igdb_genres],
-            igdb_keywords=[f'KW_IGDB_{e}' for e in req.igdb_keywords],
-            steam_genres=[f'STEAM_{e}' for e in req.steam_genres],
-            steam_tags=[f'KW_STEAM_{e}' for e in req.steam_tags],
-            gog_genres=[f'GOG_{e}' for e in req.gog_genres],
-            gog_tags=[f'KW_GOG_{e}' for e in req.gog_tags],
+        X = features.build_array(
+            igdb_genres=req.igdb_genres,
+            steam_genres=req.steam_genres,
+            gog_genres=req.gog_genres,
+            igdb_keywords=req.igdb_keywords,
+            steam_tags=req.steam_tags,
+            gog_tags=req.gog_tags,
+            description=req.description,
         )
         Y = model(X)
-        espy_genres = genres.labels(Y[0], threshold=.3333)
+        espy_genres = genres.labels(Y[0], threshold=.2)
 
         resp = GenresResponse(req.id, req.name, espy_genres=espy_genres)
         return jsonify(resp)
@@ -83,16 +85,17 @@ def handle_genres_debug():
         json = request.get_json()
         req = GenresRequest(**json)
 
-        X = tags.build_array(
-            igdb_genres=[f'IGDB_{e}' for e in req.igdb_genres],
-            igdb_keywords=[f'KW_IGDB_{e}' for e in req.igdb_keywords],
-            steam_genres=[f'STEAM_{e}' for e in req.steam_genres],
-            steam_tags=[f'KW_STEAM_{e}' for e in req.steam_tags],
-            gog_genres=[f'GOG_{e}' for e in req.gog_genres],
-            gog_tags=[f'KW_GOG_{e}' for e in req.gog_tags],
+        X = features.build_array(
+            igdb_genres=req.igdb_genres,
+            steam_genres=req.steam_genres,
+            gog_genres=req.gog_genres,
+            igdb_keywords=req.igdb_keywords,
+            steam_tags=req.steam_tags,
+            gog_tags=req.gog_tags,
+            description=req.description
         )
         Y = model(X)
-        espy_genres = genres.labels(Y[0], threshold=.3333)
+        espy_genres = genres.labels(Y[0], threshold=.2)
         decoded = genres.decode_array(Y[0])
 
         resp = GenresResponse(

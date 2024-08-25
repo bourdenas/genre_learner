@@ -6,7 +6,7 @@ import classifier.models.dense as dense
 
 from classifier.dataset.espy import EspyDataset
 from classifier.dataset.genres import Genres
-from classifier.dataset.tags import Tags
+from classifier.dataset.features import Features
 
 
 if __name__ == '__main__':
@@ -21,13 +21,13 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    tags = Tags.load()
+    features = Features.load()
     genres = Genres.load()
     dataset = EspyDataset.from_csv(args.examples)
 
-    model = dense.build(features=tags.N(), classes=genres.N())
+    model = dense.build(features=features.N(), classes=genres.N())
     model.summary()
 
-    history = model.fit(x=dataset.tags, y=dataset.genres,
+    history = model.fit(x=dataset.features, y=dataset.genres,
                         validation_split=0.2, epochs=args.epochs)
     model.save(args.output)

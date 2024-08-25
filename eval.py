@@ -6,7 +6,6 @@ import tensorflow as tf
 
 from classifier.dataset.espy import EspyDataset
 from classifier.dataset.genres import Genres
-from classifier.dataset.tags import Tags
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -19,14 +18,13 @@ if __name__ == "__main__":
         '--sigmoid_threshold', help='Threshold of the sigmoid function (0,1) for accepting a label prediction. (default: 0.5)', type=float, default=.5)
     args = parser.parse_args()
 
-    tags = Tags.load()
     genres = Genres.load()
     dataset = EspyDataset.from_csv(args.examples)
 
     model = tf.keras.models.load_model(args.model)
     model.summary()
 
-    predictions = model.predict(dataset.tags, verbose=0)
+    predictions = model.predict(dataset.features, verbose=0)
 
     wins, total_predictions, total_ground_truths = 0, 0, 0
     for i, example in enumerate(dataset.examples):
