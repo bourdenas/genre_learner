@@ -25,6 +25,8 @@ class GenresRequest:
     steam_tags: List[str] = field(default_factory=list)
     gog_genres: List[str] = field(default_factory=list)
     gog_tags: List[str] = field(default_factory=list)
+    wiki_genres: List[str] = field(default_factory=list)
+    wiki_tags: List[str] = field(default_factory=list)
     description: str = field(default='')
 
 
@@ -64,13 +66,15 @@ def handle_genres():
             igdb_genres=req.igdb_genres,
             steam_genres=req.steam_genres,
             gog_genres=req.gog_genres,
+            wiki_genres=req.wiki_genres,
             igdb_keywords=req.igdb_keywords,
             steam_tags=req.steam_tags,
             gog_tags=req.gog_tags,
+            wiki_tags=req.wiki_tags,
             description=req.description,
         )
         Y = model(X)
-        espy_genres = genres.labels(Y[0], threshold=.2)
+        espy_genres = genres.labels(Y[0], threshold=.5)
 
         resp = GenresResponse(req.id, req.name, espy_genres=espy_genres)
         return jsonify(resp)
@@ -89,13 +93,15 @@ def handle_genres_debug():
             igdb_genres=req.igdb_genres,
             steam_genres=req.steam_genres,
             gog_genres=req.gog_genres,
+            wiki_genres=req.wiki_genres,
             igdb_keywords=req.igdb_keywords,
             steam_tags=req.steam_tags,
             gog_tags=req.gog_tags,
+            wiki_tags=req.wiki_tags,
             description=req.description
         )
         Y = model(X)
-        espy_genres = genres.labels(Y[0], threshold=.2)
+        espy_genres = genres.labels(Y[0], threshold=.5)
         decoded = genres.decode_array(Y[0])
 
         resp = GenresResponse(

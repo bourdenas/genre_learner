@@ -1,538 +1,109 @@
-1980s
-2.5d
-2d
 2d fighter
 2d platformer
-3d
 3d fighter
 3d platformer
-3d vision
-4 player local
 4x
-6dof
-abstract
-action
 action adventure
 action roguelike
 action rpg
 action rts
-addictive
-adult
-adventure
-agriculture
-aliens
-alternate history
-alternative history
-ambient
-america
-ancient greece
-anime
-anthropomorphism
 arcade
-archery
 arena shooter
-artificial intelligence
-assassin
 asynchronous multiplayer
-atmospheric
-atv
 auto battler
-automation
-automobile sim
-backtracking
 base building
-baseball
-based on a novel
-basketball
-battle royale
 beat em up
-beautiful
-benchmark
-bikes
-blood
-bloody
-board game
 boomer shooter
-boss fight
-boss rush
-boxing
-branching storyline
-brawler
-building
 bullet hell
 bullet time
-capitalism
 card battler
-card game
-cartoon
-cartoon graphics
-cartoony
-casual
-cats
-character action game
-character creation
-character customization
-chess
 choices matter
-choose your own adventure
-cinematic
 city builder
-class based
-classic
-clicker
-co op
-co op campaign
-cold war
-collectathon
 colony sim
-colorful
-combat
 combat based platformer
 combat flight simulator
 combat racing
-comedy
-comic book
-competitive
-conspiracy
-construction
-controller
-conversation
-cooking
-cover system
-cozy
-crafting
-creature collector
-crime
-crowdfunded
 crpg
-cult classic
-cute
-cyberpunk
-cycling
-dark
-dark comedy
-dark fantasy
-dark humor
-darkness
-dating
 dating sim
 dating simulation
-day/night cycle
-death match
 deck building
+deckbuilder
 deckbuilding
-deliberately retro
-demons
-design & illustration
-destruction
-detective
-dialogue trees
-difficult
-dinosaurs
-diplomacy
-documentary
-dog
-dragons
-drama
-driving
 dungeon crawler
-dungeons & dragons
-dwarf
-dynamic narration
-dystopian
-early access
-economic
-economy
-education
-electronic
-electronic music
-elf
-emotional
 endless runner
-environmental puzzles
-epic
-episodic
-escape room
-esports
-experience
-experimental
-exploration
-extraction shooter
-extreme violence
-falling damage
-family friendly
-fantasy
-farming
 farming sim
 farming simulator
-fast paced
-female protagonist
-fighting
-film noir
-first person
 first person adventure
 first person platforming
 first person shooter
-fishing
-flight
 flight simulator
-fmv
-football (american)
-football (soccer)
-four x
-fox
 fps
-free to play
-full motion video
-funny
-futuristic
-gambling
-game development
-gamemaker
-games workshop
-gaming
 god game
-golf
-good old game
-gore
-gothic
 grand strategy
 graphic adventure
-great soundtrack
-greek mythology
 grid based movement
-grinding
-gun customization
 hack and slash
-hacking
-hand drawn
-hand to hand combat
-hardware
-heavy metal
-heist
-hentai
 hero shooter
-hex grid
-hidden object
-historical
-hockey
-horror
-horses
-hunting
-idler
-illuminati
-immersive
 immersive sim
-in game map editor
-indie
-instant kill
-instrumental music
 interactive fiction
-interactive movie
-inventory management
-investigation
-isometric
-jet
 job simulator
 jrpg
-kickstarter
-lego
-lemmings
-level editor
-leveling up
-lgbtq+
 life sim
 life simulation
 lifesim
-linear
-linear gameplay
-local co op
-local multiplayer
-logic
-loot
 looter shooter
-lore rich
-lovecraftian
-macromanagement
-magic
-management
-managerial
-mars
-martial arts
 massively multiplayer
 match 3
 match three
-mature
-mech
-mechs
 medical sim
-medieval
-melee
-memes
 metroidvania
-micromanagement
-microtransaction
-military
-minigames
-minimalist
-mining
 mmorpg
 moba
-mod
-moddable
-modern
-modern military
-modern warfare
-moral decisions
-motocross
-motorbike
-motorsports
-mouse only
-movie
-moving platforms
-multiplayer
-multiple endings
-murder
-music
-music and rhythm
-music based procedural generation
-musou
-mutants
-mystery
-mystery dungeon
-mythology
-narration
-narrative
 narrative adventure
-nature
-naval
-naval combat
-naval warfare
-ninja
-noir
-non violent
-nonlinear
-nostalgia
-nsfw
-nudity
-offroad
-old school
 on rails shooter
-online
-online co op
-online only
-only on gog
-open world
-open world survival craft
-outbreak sim
-over the shoulder
-parkour
-parody
-party
 party based combat
 party based rpg
 party game
-party system
-pausable real time combat
-pay to play
-perma death
-permadeath
-persistent world
-philosophical
-photo editing
-physics
 pinball
-pirates
-pixel art
-pixel graphics
 platformer
-player vs player
 point & click
 point and click
-political
-political sim
-politics
-polygonal 3d
-post apocalyptic
 precision platformer
-procedural generation
-procedurally generated
-profanity
-programming
-psychedelic
-psychological
-psychological horror
-psychological thriller
-puzzle
 puzzle platformer
-pve
-pvp
-questing
-quick time event
-quick time events
-racing
-ragdoll physics
 rail shooter
-rally
-real time
-real time combat
+real time strategy
 real time tactics
 real time with pause
-realism
-realistic
-reboot
-relaxing
-remake
-replay value
-resource gathering
-resource management
-retro
-rhythm
-robots
-rock music
 roguelike
 roguelike deckbuilder
 roguelite
 roguevania
-role playing
-roman empire
-romance
-rome
 rpg
-rpg elements
-rpgmaker
 rts
-run and gun
-runner
-sailing
-sandbox
-satire
-sci fi
-science
-score attack
-sequel
-sexual content
 shmup
 shoot em up
-shooter
-shopping
-short
-side quests
 side scroller
 side scrolling
-silent protagonist
-simulation
-single player only
-singleplayer
-skateboarding
-skill tree
-sniper
-snow
 social deduction
-sokoban
-solitaire
 souls like
 soulslike
-soundtrack
-space
-space battle
 space combat
 space sim
 space simulation
-spaceship
-spaceships
-spectacle fighter
-split screen
-sports
-sprinting mechanics
-star wars
-stealth
-steampunk
-story rich
-strategy
-strategy rpg
-stylized
-submarine
-super soldier
-superhero
-supernatural
-surreal
-survival
 survival horror
-sword & sorcery
-swordplay
-tabletop
-tactical
 tactical rpg
 tactical turn based combat
-tank
-tanks
-team based
-team deathmatch
-tech trees
 text adventure
-text based
-third person
 third person shooter
-thriller
-time attack
-time management
-time manipulation
-time travel
-top down
 top down perspective
 top down shooter
-touch friendly
 tower defense
-trackir
-trading
-trading card game
-traditional roguelike
-trains
-transhumanism
-transportation
-trivia
 truck simulator
-turn based
 turn based combat
 turn based rpg
 turn based strategy
 turn based tactics
-tutorial
 twin stick control
 twin stick shooter
-two dimensional
-typing
-underground
-underwater
-unforgiving
-useable vehicles
-vampire
-vehicle combat
-vehicular combat
-vikings
-villain protagonist
-violence
-violent
-virtual life
 visual novel
-volleyball
-voxel
-vr
 walking simulator
-war
-wargame
-warhammer 40k
-wasd movement
-well written
-werewolves
-western
-wholesome
-wizards
-world map
-world war i
-world war i   ww1
-world war ii
-world war ii   ww2
-wrestling
-zombies

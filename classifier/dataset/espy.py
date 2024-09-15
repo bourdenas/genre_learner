@@ -53,21 +53,27 @@ class EspyDataset:
                 '|') if example.steam_genres else []
             gog_genres = example.gog_genres.split(
                 '|') if example.gog_genres else []
+            wiki_genres = example.wiki_genres.split(
+                '|') if example.wiki_genres else []
             igdb_keywords = example.igdb_keywords.split(
                 '|') if example.igdb_keywords else []
             steam_tags = example.steam_tags.split(
                 '|') if example.steam_tags else []
             gog_tags = example.gog_tags.split(
                 '|') if example.gog_tags else []
+            wiki_tags = example.wiki_tags.split(
+                '|') if example.wiki_tags else []
 
             X.append(
                 features.build_array(
                     igdb_genres=igdb_genres,
                     steam_genres=steam_genres,
                     gog_genres=gog_genres,
+                    wiki_genres=wiki_genres,
                     igdb_keywords=igdb_keywords,
                     steam_tags=steam_tags,
                     gog_tags=gog_tags,
+                    wiki_tags=wiki_tags,
                     description=example.description,
                 )
             )

@@ -48,9 +48,11 @@ class Features:
             igdb_genres: List[str],
             steam_genres: List[str],
             gog_genres: List[str],
+            wiki_genres: List[str],
             igdb_keywords: List[str],
             steam_tags: List[str],
             gog_tags: List[str],
+            wiki_tags: List[str],
             description: str):
         '''
         Returns a tensor of shape (1,N) encoding all instance tags.
@@ -66,6 +68,8 @@ class Features:
         igdb_genres = ['IGDB_' + v for v in igdb_genres]
         steam_genres = ['STEAM_' + v for v in steam_genres]
         gog_genres = ['GOG_' + v for v in gog_genres]
+        wiki_genres = ['WIKI_' + v.lower().replace('-', ' ').replace(' game', '').replace(' video', '').replace(' simulations', '').replace(
+            ' simulation', '').replace(' simulator', '').replace(' sim', '').replace(' and ', ' ').replace(' & ', ' ').replace(' n ', ' ') for v in wiki_genres]
 
         igdb_keywords = [kw.lower().replace("'", '').replace('-', ' ')
                          for kw in igdb_keywords]
@@ -73,11 +77,13 @@ class Features:
                       for kw in steam_tags]
         gog_tags = [kw.lower().replace("'", '').replace('-', ' ')
                     for kw in gog_tags]
+        wiki_tags = [kw.lower().replace("'", '').replace('-', ' ')
+                     for kw in wiki_tags]
 
         indices = []
         values = []
 
-        for i, genre in itertools.chain(enumerate(igdb_genres), enumerate(steam_genres), enumerate(gog_genres)):
+        for i, genre in itertools.chain(enumerate(igdb_genres), enumerate(steam_genres), enumerate(gog_genres), enumerate(wiki_genres)):
             if genre not in self.external_genres:
                 print(f'W: Found {genre} that is not in external_genres set.')
                 continue
@@ -85,7 +91,7 @@ class Features:
             indices.append(self.external_genres_index[genre])
             values.append(i + 1)
 
-        for i, tags in enumerate([igdb_keywords, steam_tags, gog_tags]):
+        for i, tags in enumerate([igdb_keywords, steam_tags, gog_tags, wiki_tags]):
             start_index = len(self.external_genres) + len(self.tags) * i
             discarding = []
             for (j, tag) in enumerate(tags):

@@ -92,3 +92,126 @@ STEAM_Sports
 STEAM_Strategy
 STEAM_Violent
 STEAM_Web Publishing
+WIKI_4x
+WIKI_action
+WIKI_action adventure
+WIKI_action platformer
+WIKI_action role playing
+WIKI_adventure
+WIKI_air combat
+WIKI_amateur flight
+WIKI_art
+WIKI_artillery
+WIKI_association football
+WIKI_beat 'em up
+WIKI_brawler
+WIKI_bullet hell
+WIKI_business
+WIKI_card battle
+WIKI_ccg
+WIKI_city
+WIKI_city building
+WIKI_collectible card
+WIKI_combat flight
+WIKI_computer wargame
+WIKI_construction management
+WIKI_cooking
+WIKI_cozy
+WIKI_dating
+WIKI_digital collectible card
+WIKI_dungeon crawl
+WIKI_dungeon crawler
+WIKI_dungeon management
+WIKI_educational
+WIKI_endless runner
+WIKI_exploration
+WIKI_fantasy
+WIKI_fighting
+WIKI_first person shooter
+WIKI_flight
+WIKI_football
+WIKI_god
+WIKI_government
+WIKI_grand strategy
+WIKI_grand strategy wargame
+WIKI_graphic adventure
+WIKI_hack slash
+WIKI_horror
+WIKI_immersive
+WIKI_interactive drama
+WIKI_interactive fiction
+WIKI_interactive film
+WIKI_interactive movie
+WIKI_interactive story
+WIKI_isometric shooter
+WIKI_kart racing
+WIKI_life
+WIKI_management
+WIKI_massively multiplayer online
+WIKI_massively multiplayer online role playing
+WIKI_metroidvania
+WIKI_mmog
+WIKI_mmorpg
+WIKI_moba
+WIKI_multidirectional shooter
+WIKI_multiplayer online battle arena
+WIKI_music
+WIKI_party
+WIKI_photography
+WIKI_platform
+WIKI_platform adventure
+WIKI_platformer
+WIKI_point click adventure
+WIKI_political
+WIKI_programming
+WIKI_psychological horror
+WIKI_puzzle
+WIKI_puzzle adventure
+WIKI_puzzle platform
+WIKI_puzzle platformer
+WIKI_racing
+WIKI_racing management
+WIKI_raising
+WIKI_real time strategy
+WIKI_real time tactics
+WIKI_rhythm
+WIKI_roguelike
+WIKI_roguelike deck building
+WIKI_role playing
+WIKI_rpg
+WIKI_run gun
+WIKI_scrolling shooter
+WIKI_shoot 'em up
+WIKI_shooter
+WIKI_side scrolling
+WIKI_snowboarding
+WIKI_social
+WIKI_social deduction
+WIKI_soulslike
+WIKI_space
+WIKI_space combat
+WIKI_space flight
+WIKI_space trading combat
+WIKI_sport
+WIKI_sports
+WIKI_stealth
+WIKI_strategy
+WIKI_submarine
+WIKI_superhero fiction
+WIKI_survival
+WIKI_survival horror
+WIKI_tabletop
+WIKI_tactical
+WIKI_tactical role playing
+WIKI_tactical shooter
+WIKI_third person shooter
+WIKI_top down shooter
+WIKI_tower defense
+WIKI_traditional basketball
+WIKI_turn based strategy
+WIKI_turn based tactical
+WIKI_turn based tactics
+WIKI_twin stick shooter
+WIKI_vehicle
+WIKI_vehicular combat
+WIKI_visual novel
