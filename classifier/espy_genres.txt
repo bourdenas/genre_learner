@@ -10,7 +10,6 @@ Fighting
 BeatEmUp
 Pinball
 CardAndBoard
-Deckbuilder
 LifeSim
 FarmingSim
 DatingSim
