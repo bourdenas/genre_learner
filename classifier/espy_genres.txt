@@ -6,9 +6,9 @@ NarrativeAdventure
 SurvivalAdventure
 PuzzleAdventure
 WalkingSimulator
+Arcade
 Fighting
 BeatEmUp
-Pinball
 CardAndBoard
 LifeSim
 FarmingSim
@@ -16,7 +16,6 @@ DatingSim
 Puzzle
 VisualNovel
 Exploration
-EndlessRunner
 Rhythm
 PartyGame
 SideScroller
