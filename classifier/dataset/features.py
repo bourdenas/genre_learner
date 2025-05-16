@@ -85,7 +85,7 @@ class Features:
 
         for i, genre in itertools.chain(enumerate(igdb_genres), enumerate(steam_genres), enumerate(gog_genres), enumerate(wiki_genres)):
             if genre not in self.external_genres:
-                print(f'W: Found {genre} that is not in external_genres set.')
+                # print(f'W: Found {genre} that is not in external_genres set.')
                 continue
 
             indices.append(self.external_genres_index[genre])

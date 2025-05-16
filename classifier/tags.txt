@@ -1,109 +1,268 @@
+16 bit
+2.5d
 2d fighter
+2d fighting
 2d platformer
 3d fighter
+3d platform
 3d platformer
+3d vision
+4 player co op
+4 player local
 4x
+8 bit
+8 bit style
+abandonware
+action
 action adventure
+action combat
 action roguelike
 action rpg
 action rts
+active stealth
+adventure
+agriculture
+airplane combat
+always online
+american football
+amiga
+anti cheat system
 arcade
+arcade driving physics
+arcade racers
+arena combat
 arena shooter
+arpg
+ascii
+asymmetric co op
+asymmetric gameplay
+asymmetrical survival horror
 asynchronous multiplayer
+auto aim
 auto battler
+auto runner
+auto scrolling levels
+automobile sim
 base building
+base management
+baseball
+basketball
+battle arena
+battle royale
 beat em up
+block matching
+block puzzle
+board game
+boat racing
 boomer shooter
+boss fight
+bossfight
+boxing
+brawler
 bullet hell
 bullet time
+card based combat
 card battler
+card game
+cartoon graphics
+cartoon violence
+casual
+cga graphics
+character creation
+chess
+choice matters
 choices matter
+choose your own adventure
+cinematic platformer
 city builder
+close quarters combat
+cloud gaming
+co op
+co op campaign
+collectible card game
 colony sim
+colony simulator
 combat based platformer
 combat flight simulator
 combat racing
+combat simulator
+competitive co op
+couch co op
+cover system
+crafting
 crpg
 dating sim
 dating simulation
+death match
 deck building
 deckbuilder
 deckbuilding
+diplomacy
 dungeon crawler
+dungeon crawling
+dungeon management
+e sports
 endless runner
+environmental puzzles
+escort mission
+esport
+esports
+extraction shooter
 farming sim
 farming simulator
+fighting
+first person
 first person adventure
 first person platforming
 first person shooter
+flight simulation
 flight simulator
-fps
+football
+football manager
+four x
+free to play
 god game
+golf
 grand strategy
 graphic adventure
-grid based movement
+grid based
+grinding
 hack and slash
+hand to hand combat
 hero shooter
+horror
 immersive sim
 interactive fiction
+interactive movie
+isometric
 job simulator
 jrpg
 life sim
 life simulation
 lifesim
+local co op
+local multiplayer
+loot boxes
 looter shooter
 massively multiplayer
 match 3
 match three
 medical sim
 metroidvania
+microtransaction
 mmorpg
 moba
+music and rhythm
 narrative adventure
+naval combat
+naval warfare
+nsfw
+off road racing
 on rails shooter
+online co op
+online coop
+online multiplayer
+online only
+online pvp
+open world
+open world survival craft
+outbreak sim
+over the shoulder
+party based
 party based combat
 party based rpg
 party game
+pausable real time combat
+pay to play
+perma death
+permadeath
+physics based platformer
+physics puzzles
 pinball
 platformer
 point & click
 point and click
+political sim
+political simulation
 precision platformer
+precision platforming
+procedural generation
+procedurally generated
+psychological horror
 puzzle platformer
+pvp
+racing
+racing sim
+racing simulator
+racism
 rail shooter
+railroad simulation
+real time battles
+real time combat
 real time strategy
 real time tactics
 real time with pause
+resource gathering
+resource management
+restaurant management
 roguelike
 roguelike deckbuilder
+roguelike horror
 roguelite
 roguevania
 rpg
 rts
+run and gun
+sexual content
+sexual violence
+ship simulator
 shmup
 shoot em up
+shooter
 side scroller
 side scrolling
-social deduction
+simultaneous turns
+singing
 souls like
 soulslike
+space battle
 space combat
+space exploration
 space sim
 space simulation
+spectacle fighter
+squad based
+squad based shooter
+squad tactics
+strategy rpg
+street racing
+survival
 survival horror
+survival shooter
 tactical rpg
 tactical turn based combat
+tank simulator
+team deathmatch
+technical platformer
 text adventure
+third person
 third person shooter
 top down perspective
 top down shooter
 tower defense
+trading card game
 truck simulator
+turn based
 turn based combat
 turn based rpg
 turn based strategy
 turn based tactics
 twin stick control
 twin stick shooter
+tycoon
+vehicle simulation
 visual novel
+vertical scrolling
 walking simulator
+wargame
+zelda like
