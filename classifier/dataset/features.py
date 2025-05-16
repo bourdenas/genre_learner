@@ -4,6 +4,8 @@ import tensorflow as tf
 
 from typing import List, Dict, Set
 
+from classifier.predictor.debug_info import FeaturesInfo
+
 
 class Features:
     def load():
@@ -14,12 +16,8 @@ class Features:
         external_genres_reverse_index = {
             v: k for k, v in external_genres_index.items()}
 
-        # tag_sources = ['IGDB', 'STEAM', 'GOG', 'TEXT']
         with open('classifier/tags.txt') as f:
             tags = set([line.strip() for line in f])
-            # tags = set()
-            # for source in tag_sources:
-            #     tags.update(set([f'KW_{source}_{line.strip()}' for line in f]))
         tags_index = {tag: i for i, tag in enumerate(sorted(tags))}
         tags_reverse_index = {v: k for k, v in tags_index.items()}
 
@@ -41,7 +39,9 @@ class Features:
         self.tags_reverse_index = tags_reverse_index
 
     def N(self) -> int:
-        return len(self.external_genres) + len(self.tags) * 4
+        # Number of external genres plus tags for IGDB, Steam, GOG, Wikipedia
+        # and from description.
+        return len(self.external_genres) + len(self.tags) * 5
 
     def build_array(
             self,
@@ -49,7 +49,7 @@ class Features:
             steam_genres: List[str],
             gog_genres: List[str],
             wiki_genres: List[str],
-            igdb_keywords: List[str],
+            igdb_tags: List[str],
             steam_tags: List[str],
             gog_tags: List[str],
             wiki_tags: List[str],
@@ -68,21 +68,18 @@ class Features:
         igdb_genres = ['IGDB_' + v for v in igdb_genres]
         steam_genres = ['STEAM_' + v for v in steam_genres]
         gog_genres = ['GOG_' + v for v in gog_genres]
-        wiki_genres = ['WIKI_' + v.lower().replace('-', ' ').replace(' game', '').replace(' video', '').replace(' simulations', '').replace(
+        wiki_genres = ['WIKI_' + normalize(v).replace(' game', '').replace(' video', '').replace(' simulations', '').replace(
             ' simulation', '').replace(' simulator', '').replace(' sim', '').replace(' and ', ' ').replace(' & ', ' ').replace(' n ', ' ') for v in wiki_genres]
 
-        igdb_keywords = [kw.lower().replace("'", '').replace('-', ' ')
-                         for kw in igdb_keywords]
-        steam_tags = [kw.lower().replace("'", '').replace('-', ' ')
-                      for kw in steam_tags]
-        gog_tags = [kw.lower().replace("'", '').replace('-', ' ')
-                    for kw in gog_tags]
-        wiki_tags = [kw.lower().replace("'", '').replace('-', ' ')
-                     for kw in wiki_tags]
+        igdb_tags = [normalize(kw) for kw in igdb_tags]
+        steam_tags = [normalize(kw) for kw in steam_tags]
+        gog_tags = [normalize(kw) for kw in gog_tags]
+        wiki_tags = [normalize(kw) for kw in wiki_tags]
 
         indices = []
         values = []
 
+        # Fill external genres in the feature vector.
         for i, genre in itertools.chain(enumerate(igdb_genres), enumerate(steam_genres), enumerate(gog_genres), enumerate(wiki_genres)):
             if genre not in self.external_genres:
                 # print(f'W: Found {genre} that is not in external_genres set.')
@@ -91,42 +88,29 @@ class Features:
             indices.append(self.external_genres_index[genre])
             values.append(i + 1)
 
-        for i, tags in enumerate([igdb_keywords, steam_tags, gog_tags, wiki_tags]):
+        # Fill external tags/keywords in the feature vector.
+        for i, tags in enumerate([igdb_tags, steam_tags, gog_tags, wiki_tags]):
             start_index = len(self.external_genres) + len(self.tags) * i
-            discarding = []
             for (j, tag) in enumerate(tags):
+                # take only tags/keywords that are in the supported tag list
                 if tag in self.tags:
                     indices.append(start_index + self.tags_index[tag])
                     values.append(j + 1)
-                else:
-                    discarding.append(tag)
-            # if len(discarding) > 0:
-            #     print(f'Discarding: {discarding}')
 
-        description = description.lower().replace("'", '').replace('-', ' ')
-        start_index = len(self.external_genres) + len(self.tags) * 3
+        # Fill tags/keywords extracted from the description in the feature vector.
+        description = normalize(description)
+        start_index = len(self.external_genres) + len(self.tags) * 4
         for tag in self.tags:
             if tag in description:
                 indices.append(start_index + self.tags_index[tag])
                 values.append(1)
-                # tt = {
-                #     'IGDB': [tag for tag in igdb_keywords if tag in self.tags],
-                #     'STEAM': [tag for tag in steam_tags if tag in self.tags],
-                #     'GOG': [tag for tag in gog_tags if tag in self.tags],
-                # }
-
-                # print(f'GENRES = {[igdb_genres, steam_genres, gog_genres]}')
-                # print(
-                #     f'TAGS = {tt}')
-                # print(f'INDICES = {indices}')
-                # print(f'VALUES = {values}\n')
 
         X = np.zeros(self.N(), dtype=int)
         X[indices] = values
         X = tf.expand_dims(X, axis=0)
         return X
 
-    def decode_array(self, X) -> Dict[str, str]:
+    def debug(self, X) -> FeaturesInfo:
         '''
         Returns human readable description of a (N,) Tensor representing tags.
 
@@ -134,28 +118,48 @@ class Features:
             X (Tensor(N,)): Input tensor X with values for each input tag.
 
         Returns:
-            Dict[str,str]: Instance tags with their non-zero values.
+            FeaturesInfo: Human readable representation of input features.
         '''
-        features = {}
+        features = FeaturesInfo()
 
         # print(f'X.shape = {X.shape}')
-        for i, p in enumerate(X[0]):
-            # print(f'p.shape = {p.shape}')
-            if not p > 0:
+        for i, v in enumerate(X[0]):
+            # print(f'v.shape = {v.shape}')
+            if v < 1:
                 continue
 
             if i < len(self.external_genres):
-                features[self.external_genres_reverse_index[i]] = f'{p}'
+                features.external_genres.append(
+                    f'{self.external_genres_reverse_index[i]} = {v}')
             elif i < (len(self.external_genres) + len(self.tags)):
                 i = i - len(self.external_genres)
-                features['IGDB_KW_' + self.tags_reverse_index[i]] = f'{p}'
+                features.igdb_tags.append(
+                    f'{self.tags_reverse_index[i]} = {v}')
             elif i < (len(self.external_genres) + 2*len(self.tags)):
                 i = i - len(self.external_genres)
                 i = i % len(self.tags)
-                features['STEAM_KW_' + self.tags_reverse_index[i]] = f'{p}'
-            else:
+                features.steam_tags.append(
+                    f'{self.tags_reverse_index[i]} = {v}')
+            elif i < (len(self.external_genres) + 3*len(self.tags)):
                 i = i - len(self.external_genres)
                 i = i % len(self.tags)
-                features['GOG_KW_' + self.tags_reverse_index[i]] = f'{p}'
+                features.gog_tags.append(
+                    f'{self.tags_reverse_index[i]} = {v}')
+            elif i < (len(self.external_genres) + 4*len(self.tags)):
+                i = i - len(self.external_genres)
+                i = i % len(self.tags)
+                features.wiki_tags.append(
+                    f'{self.tags_reverse_index[i]} = {v}')
+            elif i < (len(self.external_genres) + 5*len(self.tags)):
+                i = i - len(self.external_genres)
+                i = i % len(self.tags)
+                features.description_tags.append(
+                    f'{self.tags_reverse_index[i]} = {v}')
+            else:
+                print(f'BAD INDEX={i} in input feature vector')
 
         return features
+
+
+def normalize(s: str) -> str:
+    return s.lower().replace("'", '').replace('-', ' ')

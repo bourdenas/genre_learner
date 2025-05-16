@@ -103,12 +103,13 @@ WIKI_amateur flight
 WIKI_art
 WIKI_artillery
 WIKI_association football
-WIKI_beat 'em up
+WIKI_beat em up
 WIKI_brawler
 WIKI_bullet hell
 WIKI_business
 WIKI_card battle
 WIKI_ccg
+WIKI_cinematic platformer
 WIKI_city
 WIKI_city building
 WIKI_collectible card
@@ -171,6 +172,7 @@ WIKI_puzzle platform
 WIKI_puzzle platformer
 WIKI_racing
 WIKI_racing management
+WIKI_rail shooter
 WIKI_raising
 WIKI_real time strategy
 WIKI_real time tactics
@@ -181,7 +183,7 @@ WIKI_role playing
 WIKI_rpg
 WIKI_run gun
 WIKI_scrolling shooter
-WIKI_shoot 'em up
+WIKI_shoot em up
 WIKI_shooter
 WIKI_side scrolling
 WIKI_snowboarding
@@ -194,6 +196,7 @@ WIKI_space flight
 WIKI_space trading combat
 WIKI_sport
 WIKI_sports
+WIKI_sports management
 WIKI_stealth
 WIKI_strategy
 WIKI_submarine
@@ -215,3 +218,4 @@ WIKI_twin stick shooter
 WIKI_vehicle
 WIKI_vehicular combat
 WIKI_visual novel
+

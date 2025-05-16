@@ -55,8 +55,8 @@ class EspyDataset:
                 '|') if example.gog_genres else []
             wiki_genres = example.wiki_genres.split(
                 '|') if example.wiki_genres else []
-            igdb_keywords = example.igdb_keywords.split(
-                '|') if example.igdb_keywords else []
+            igdb_tags = example.igdb_tags.split(
+                '|') if example.igdb_tags else []
             steam_tags = example.steam_tags.split(
                 '|') if example.steam_tags else []
             gog_tags = example.gog_tags.split(
@@ -70,7 +70,7 @@ class EspyDataset:
                     steam_genres=steam_genres,
                     gog_genres=gog_genres,
                     wiki_genres=wiki_genres,
-                    igdb_keywords=igdb_keywords,
+                    igdb_tags=igdb_tags,
                     steam_tags=steam_tags,
                     gog_tags=gog_tags,
                     wiki_tags=wiki_tags,

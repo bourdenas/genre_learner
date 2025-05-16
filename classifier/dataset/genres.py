@@ -3,6 +3,8 @@ import tensorflow as tf
 
 from typing import List, Dict, Set
 
+from classifier.predictor.debug_info import PredictionInfo
+
 
 class Genres:
     def load():
@@ -36,7 +38,7 @@ class Genres:
         Y = tf.expand_dims(Y, axis=0)
         return Y
 
-    def decode_array(self, Y) -> Dict[str, str]:
+    def debug(self, Y) -> PredictionInfo:
         '''
         Returns human readable description of the predictions output array Y.
 
@@ -46,7 +48,7 @@ class Genres:
         Returns:
             Dict(str, str): Activated labels with their associated value in [0.001, 1].
         '''
-        return {self.reverse_index[i]: f'{p:.3}' for i, p in enumerate(Y) if p >= 0.001}
+        return PredictionInfo(genres={self.reverse_index[i]: f'{p:.3}' for i, p in enumerate(Y) if p >= 0.001})
 
     def labels(self, Y, threshold=0.5) -> List[str]:
         return [self.reverse_index[i] for i, p in enumerate(Y) if p >= threshold]
