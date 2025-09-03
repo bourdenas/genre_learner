@@ -11,7 +11,6 @@ class FeaturesInfo:
     steam_tags: List[str] = field(default_factory=list)
     gog_tags: List[str] = field(default_factory=list)
     wiki_tags: List[str] = field(default_factory=list)
-    description_tags: List[str] = field(default_factory=list)
 
 
 @dataclass_json

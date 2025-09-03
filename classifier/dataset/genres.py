@@ -52,3 +52,17 @@ class Genres:
 
     def labels(self, Y, threshold=0.5) -> List[str]:
         return [self.reverse_index[i] for i, p in enumerate(Y) if p >= threshold]
+
+    def prediction(self, Y, threshold=0.1) -> str:
+        """
+        Returns label prediction based on output array Y.
+
+        Args:
+            Y (tensor (L,)): Output tensor Y with values for each label predicition.
+            threshold (float, optional): The minimum score required to assign a label. Defaults to 0.1.
+
+        Returns:
+            str: The predicted label if its score meets or exceeds the threshold; otherwise, an empty string.
+        """
+        label = self.reverse_index[max(range(len(Y)), key=Y.__getitem__)]
+        return label if Y[self.label_index[label]] >= threshold else ''

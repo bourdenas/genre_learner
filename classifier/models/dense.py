@@ -12,7 +12,7 @@ def build(features: int, classes: int):
         classes (int): Number of output classes for prediction.
     '''
     inputs = tf.keras.Input(shape=(features,))
-    X = tfl.Dense(4096, activation='relu')(inputs)
+    X = tfl.Dense(2048, activation='relu')(inputs)
     X = tfl.Dropout(0.2)(X)
     X = tfl.Dense(1024, activation='relu')(X)
     X = tfl.Dropout(0.2)(X)

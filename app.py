@@ -19,10 +19,10 @@ app = Flask(__name__)
 features = Features.load()
 genres = Genres.load()
 model = None
-prediction_threshold = .5
+prediction_threshold = 0
 
 
-def predict_genres(filename: str, threshold: float = .5):
+def predict_genres(filename: str, threshold: float):
     global model
     global prediction_threshold
 
@@ -49,7 +49,7 @@ def handle_genres():
             description=req.description,
         )
         Y = model(X)
-        espy_genres = genres.labels(Y[0], threshold=prediction_threshold)
+        espy_genres = [genres.prediction(Y[0], prediction_threshold)]
         if req.debug:
             debug_info = DebugInfo(
                 features=features.debug(X), predictions=genres.debug(Y[0]))

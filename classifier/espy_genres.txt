@@ -19,7 +19,6 @@ Rhythm
 PartyGame
 SideScroller
 Platformer3d
-ShooterPlatformer
 PuzzlePlatformer
 CRPG
 ARPG
@@ -31,7 +30,6 @@ TopDownShooter
 ThirdPersonShooter
 SpaceShooter
 Shmup
-BattleRoyale
 CityBuilder
 Tycoon
 GodGame

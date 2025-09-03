@@ -39,9 +39,8 @@ class Features:
         self.tags_reverse_index = tags_reverse_index
 
     def N(self) -> int:
-        # Number of external genres plus tags for IGDB, Steam, GOG, Wikipedia
-        # and from description.
-        return len(self.external_genres) + len(self.tags) * 5
+        # Number of external genres plus tags from IGDB, Steam, GOG and Wikipedia.
+        return len(self.external_genres) + len(self.tags) * 4
 
     def build_array(
             self,
@@ -97,14 +96,6 @@ class Features:
                     indices.append(start_index + self.tags_index[tag])
                     values.append(j + 1)
 
-        # Fill tags/keywords extracted from the description in the feature vector.
-        description = normalize(description)
-        start_index = len(self.external_genres) + len(self.tags) * 4
-        for tag in self.tags:
-            if tag in description:
-                indices.append(start_index + self.tags_index[tag])
-                values.append(1)
-
         X = np.zeros(self.N(), dtype=int)
         X[indices] = values
         X = tf.expand_dims(X, axis=0)
@@ -149,11 +140,6 @@ class Features:
                 i = i - len(self.external_genres)
                 i = i % len(self.tags)
                 features.wiki_tags.append(
-                    f'{self.tags_reverse_index[i]} = {v}')
-            elif i < (len(self.external_genres) + 5*len(self.tags)):
-                i = i - len(self.external_genres)
-                i = i % len(self.tags)
-                features.description_tags.append(
                     f'{self.tags_reverse_index[i]} = {v}')
             else:
                 print(f'BAD INDEX={i} in input feature vector')

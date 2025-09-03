@@ -218,4 +218,3 @@ WIKI_twin stick shooter
 WIKI_vehicle
 WIKI_vehicular combat
 WIKI_visual novel
-

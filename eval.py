@@ -1,10 +1,12 @@
 import os
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'    # nopep8
 
 import argparse
 import tensorflow as tf
 
 from classifier.dataset.espy import EspyDataset
+from classifier.dataset.features import Features
 from classifier.dataset.genres import Genres
 
 if __name__ == "__main__":
@@ -19,28 +21,37 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     genres = Genres.load()
+    features = Features.load()
     dataset = EspyDataset.from_csv(args.examples)
 
     model = tf.keras.models.load_model(args.model)
     model.summary()
 
-    predictions = model.predict(dataset.features, verbose=0)
+    preds = model.predict(dataset.features, verbose=0)
 
-    wins, total_predictions, total_ground_truths = 0, 0, 0
+    wins, mistakes, predictions, missing_prediction, total_ground_truths = 0, 0, 0, 0, 0
+    errors = []
     for i, example in enumerate(dataset.examples):
-        result = set(genres.labels(
-            predictions[i],
-            threshold=args.sigmoid_threshold
-        ))
-        ground_truth = set(example.espy_genres.split('|'))
+        result = genres.prediction(preds[i], args.sigmoid_threshold)
+        ground_truth = example.espy_genres
 
-        for label in result:
-            if label in ground_truth:
-                wins += 1
-        total_predictions += len(result)
-        total_ground_truths += len(ground_truth)
+        if result == ground_truth:
+            wins += 1
+        else:
+            mistakes += 1
+            print(f'{example.name} ({example.id}) l:{example.espy_genres}  p:{result}')
 
+        if result:
+            predictions += 1
+        else:
+            missing_prediction += 1
+        total_ground_truths += 1
+
+    print()
     print(f'wins={wins}')
-    print(f'predictions={total_predictions}')
-    print(f'precision={(wins / total_predictions):.2}')
-    print(f'recall={(wins / total_ground_truths):.2}')
+    print(f'mistakes={mistakes}')
+    print(f'predictions={predictions}')
+    print(f'missing prediction={missing_prediction}')
+    print(f'total={total_ground_truths}')
+    print(f'precision={(wins / predictions):.4}')
+    print(f'coverage={(predictions / total_ground_truths):.4}')
