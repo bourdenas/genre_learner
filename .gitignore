@@ -129,4 +129,5 @@ dmypy.json
 *.png
 *.csv
 *.keras
+*.pkl
 prod_model/

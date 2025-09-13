@@ -1,38 +1,42 @@
 import re
 import matplotlib.pyplot as plt
 import classifier.dataset.utils as utils
-import numpy as np
 import tensorflow as tf
-import tensorflow.data as tf_data
-import tensorflow.keras.layers as tfl
 
 from classifier.dataset.genres import Genres
 from classifier.dataset.features import Features
-from typing import Dict, Set
+from typing import Set
 
 
 class EspyDataset:
-    def __init__(self, examples, features, texts, genres=[], word_index: Dict[str, int] = {}) -> None:
+    def __init__(
+        self,
+        examples: list,  # specify the type of objects in the list
+        texts: list[str],
+        features: tf.Tensor,  # shape: (N, F), N = num examples, F = feature vector size
+        genres: tf.Tensor = [],  # shape: (N, G), N = num examples, G = num genres (labels)
+    ) -> None:
         self.examples = examples
 
-        # (N,F) dimentional tensor where N is the number of examples and F is
+        # List of text descriptions for each example.
+        self.texts = texts
+
+        # (N,F) dimensional tensor where N is the number of examples and F is
         # the size of their input feature vector.
         self.features = features
 
-        # (N,L) dimentional tensor where N is the number of examples and L is
-        # the size of their output label vector.
+        # (N,G) dimensional tensor where N is the number of examples and G is
+        # the number of genre labels.
         self.genres = genres
 
-        self.texts = texts
-        self.word_index = word_index
 
-    def from_csv(filename):
-        '''
+    def from_csv(filename: str):
+        """
         Loads a dataset from a csv file.
 
         Args:
             filename (str): Path to the csv file describing the dataset.
-        '''
+        """
         examples = utils.load_examples(filename)
 
         features = Features.load()
@@ -78,7 +82,7 @@ class EspyDataset:
                 )
             )
 
-            text = extract_text(example.description, keywords)
+            text = preprocess_text(example.description, keywords)
             texts.append(text)
 
             # Y label array represents the espy genres, where the value of each
@@ -89,35 +93,51 @@ class EspyDataset:
 
         # plot([len(x) for x in texts])
 
-        texts_ds = tf_data.Dataset.from_tensor_slices(texts).batch(128)
-        vectorizer = tfl.TextVectorization(
-            max_tokens=2000, output_sequence_length=1000)
-        vectorizer.adapt(texts_ds)
-
-        vocab = vectorizer.get_vocabulary()
-        word_index = dict(zip(vocab, range(len(vocab))))
-
         return EspyDataset(
             examples,
             features=tf.concat(X, axis=0),
             genres=tf.concat(Y, axis=0) if Y else [],
-            texts=vectorizer(np.array([[s] for s in texts])).numpy(),
-            word_index=word_index)
+            texts=texts)
 
 
-def extract_text(description: str, keywords: Set[str]) -> str:
-    '''
-    Returns only the description sentences that match input keywords.
-    '''
-    sentences = re.split('\.|\?|\!', description.lower())
+def preprocess_text(text: str, keywords: Set[str]) -> str:
+    """
+    Returns preprocessed text for training and prediction.
+    """
 
-    text = []
+    # Convert to lowercase
+    text = str(text).lower()
+    
+    # Remove HTML tags
+    text = re.sub(r'<[^>]+>', ' ', text)
+    
+    # Remove special characters but keep spaces and basic punctuation
+    text = re.sub(r'[^\w\s.,!?-]', ' ', text)
+
+    # Replace hyphens with whitespace.
+    text = re.sub(r'-', ' ', text)
+
+    # Remove extra whitespace
+    text = re.sub(r'\s+', ' ', text).strip()
+
+    # Split text into stentences.
+    sentences = re.split('\.|\?|\!', text)
+
+    # Keep only sentences that contain `keywords`. This is meant to reduce fluff
+    # for text processing.
+    texts = []
     for sentence in sentences:
-        for kw in keywords:
-            if kw in sentence:
-                text.append(sentence)
+        words = sentence.split()
+        unigrams = set(words)
+        bigrams = set([' '.join(words[i:i+2]) for i in range(len(words)-1)])
+        trigrams = set([' '.join(words[i:i+3]) for i in range(len(words)-2)])
+        ngrams = unigrams | bigrams | trigrams
 
-    return '. '.join(text)
+        intersection = ngrams & keywords
+        if intersection and (len(texts) == 0 or texts[-1] != sentence):
+            texts.append(sentence)
+
+    return '. '.join(texts)
 
 
 def plot(data):

@@ -14,6 +14,7 @@ action rpg
 action rts
 airplane combat
 american football
+anime
 arcade
 arcade driving physics
 arcade racers
@@ -57,6 +58,7 @@ combat flight simulator
 combat racing
 combat simulator
 crafting
+creature collector
 crpg
 dating sim
 dating simulation
@@ -80,9 +82,12 @@ flight simulator
 football
 football manager
 four x
+fps
 god game
 grand strategy
 graphic adventure
+grid based
+grid based movement
 hack and slash
 hero shooter
 immersive sim
@@ -96,6 +101,7 @@ life sim
 life simulation
 lifesim
 looter shooter
+management
 massively multiplayer
 match 3
 match three
@@ -124,7 +130,9 @@ political sim
 political simulation
 precision platformer
 precision platforming
+psychological horror
 puzzle platformer
+racing
 racing sim
 racing simulator
 rail shooter
@@ -150,6 +158,7 @@ shoot em up
 shooter
 side scroller
 side scrolling
+simulation
 souls like
 soulslike
 space battle
@@ -157,13 +166,16 @@ space combat
 space sim
 space simulation
 spectacle fighter
+sports
 squad based shooter
 squad tactics
+strategy
 strategy rpg
 street racing
 survival
 survival horror
 survival shooter
+tactical
 tactical rpg
 tactical turn based combat
 tank simulator
@@ -171,12 +183,14 @@ technical platformer
 text adventure
 third person
 third person shooter
+top down
 top down perspective
 top down shooter
 tower defense
 trading card game
 truck simulator
 turn based
+turn based combat
 turn based rpg
 turn based strategy
 turn based tactics
@@ -184,8 +198,8 @@ twin stick control
 twin stick shooter
 tycoon
 vehicle simulation
-visual novel
 vertical scrolling
+visual novel
 walking simulator
 wargame
 zelda like

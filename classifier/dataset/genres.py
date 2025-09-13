@@ -15,6 +15,7 @@ class Genres:
         reverse_index = {v: k for k, v in label_index.items()}
         return Genres(espy_genres, label_index, reverse_index)
 
+
     def __init__(
             self,
             espy_genres: Set[str],
@@ -26,8 +27,10 @@ class Genres:
         self.label_index = label_index
         self.reverse_index = reverse_index
 
+
     def N(self) -> int:
         return len(self.label_index)
+
 
     def build_array(self, espy_genres: List[str]):
         indices = [self.label_index[genre] for genre in espy_genres]
@@ -37,6 +40,7 @@ class Genres:
         Y[indices] = values
         Y = tf.expand_dims(Y, axis=0)
         return Y
+
 
     def debug(self, Y) -> PredictionInfo:
         '''
@@ -50,8 +54,10 @@ class Genres:
         '''
         return PredictionInfo(genres={self.reverse_index[i]: f'{p:.3}' for i, p in enumerate(Y) if p >= 0.001})
 
+
     def labels(self, Y, threshold=0.5) -> List[str]:
         return [self.reverse_index[i] for i, p in enumerate(Y) if p >= threshold]
+
 
     def prediction(self, Y, threshold=0.1) -> str:
         """
